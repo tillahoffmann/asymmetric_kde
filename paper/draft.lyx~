@@ -444,7 +444,7 @@ key "Kuruwita2010"
 \end_inset
 
 .
- Jean and Kim obtained an estimator that is a valid density by treating
+ Jeoan and Kim obtained an estimator that is a valid density by treating
  the evaluation point as a random variable and parametrising the gamma distribut
 ion with the associated sample 
 \begin_inset CommandInset citation
@@ -1117,7 +1117,7 @@ name "sec:sample-point"
 \begin_layout Standard
 irregular estimators have been criticised because they are not properly
  normalised densities themselves.
- Jean and Kim 
+ Jeoan and Kim 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Jeon2014"
@@ -1292,7 +1292,7 @@ key "Terrell1992"
 \end_layout
 
 \begin_layout Standard
-Jean and Kim were only able to obtain an upper bound for the MSE of the
+Jeoan and Kim were only able to obtain an upper bound for the MSE of the
  estimator defined in Eq.
 \begin_inset space ~
 \end_inset
@@ -2801,7 +2801,7 @@ Recall that the bias of a regular estimator is independent of the first
 \end_inset
 
 .
- The resulting estimator shares its asymptotic properties with the regular
+ The resulting estimator shares its asymptotic propeties with the regular
  gamma estimator.
  All estimators achieve the same 
 \begin_inset Formula $n^{-4/5}$
@@ -2843,7 +2843,7 @@ name "sec:discussion"
 
 \begin_layout Standard
 There are two fundamentally different approaches to constructing density
- estimators from asymmetric kernels because they are not invariant to exchange
+ estimators from asymmetric kernesl because they are not invariant to exchange
  of the evaluation point and the associated sample.
  On the one hand, irregular estimators are widely used and their asymptotic
  properties are known for a range of distributions including gamma, log-normal,
@@ -2864,7 +2864,7 @@ Regular estimators, on the other hand, are valid densities themselves but
  are not widely used.
  In the limit of small bandwidths, regular kernels are well-approximated
  by Gaussians whose bandwidth depends on the associated sample.
- Assuming that the bandwidth does not depend on the sample super-linearly,
+ Assuming that the bandwidth does not depend on the sample superlinearly,
  we derived the asymptotic properties of such estimators.
  The bias of regular estimators is independent of the first derivative of
  the generating distribution if (a) the mean of the kernel differs from
