@@ -4,9 +4,7 @@
 \begin_header
 \textclass amsart
 \begin_preamble
-%\usepackage{amsthm}
-%\theoremstyle{definition}
-%\usepackage[showframe]{geometry}
+
 \end_preamble
 \use_default_options false
 \begin_removed_modules
@@ -133,11 +131,6 @@ theorems-ams-bytype
 \end_inset
 
 
-\begin_inset FormulaMacro
-\newcommand{\Exp}{\mathrm{E}}
-\end_inset
-
-
 \end_layout
 
 \begin_layout Title
@@ -153,11 +146,16 @@ Nick Jones
 \end_layout
 
 \begin_layout Abstract
-We extend variable bandwidth balloon estimators and sample smoothing estimators
+We extend variable-bandwidth balloon estimators and sample-smoothing estimators
  by a shift parameter and derive their asymptotic bias, variance and mean
- integrated squared error.
+ (integrated) squared error.
  We argue that most kernel density estimators are asymptotically equivalent
- to a shifted balloon estimator or a shifted sample smoothing estimator.
+ to one of the two estimators considered.
+ The method is applied to derive the asymptotic properties of density estimators
+ with gamma, log-normal, Birnbaum-Saunders, inverse Gaussian and reciprocal
+ inverse Gaussian kernels.
+ We derive plugin expressions for bandwidth selection and demonstrate our
+ method using simulations.
 \end_layout
 
 \begin_layout Section
@@ -165,32 +163,318 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-The mean square error (MSE) of a density estimator 
-\begin_inset Formula $\hat{f}_{h}(x)$
+Kernel density estimation with fixed bandwidth has become the most common
+ method to estimate unknown densities of continuous random variables.
+ The standard kernel density estimator (KDE) is defined as 
+\begin_inset Formula 
+\begin{equation}
+\hat{f}\left(x\right)=\frac{1}{nh}\sum_{i=1}^{n}K\left(\frac{X_{i}-x}{h}\right),\label{eq:standard-kde}
+\end{equation}
+
 \end_inset
 
- is 
+where 
+\begin_inset Formula $\left\{ X_{i}\right\} $
+\end_inset
+
+ is a set of 
+\begin_inset Formula $n$
+\end_inset
+
+ i.i.d.
+ samples of a univariate random variable 
+\begin_inset Formula $X$
+\end_inset
+
+ drawn from a generating distribution 
+\begin_inset Formula $f$
+\end_inset
+
+, 
+\begin_inset Formula $K$
+\end_inset
+
+ is a non-negative kernel that integrates to unity, and 
+\begin_inset Formula $h$
+\end_inset
+
+ is the bandwidth which controls the smoothness of the estimator 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Silverman1986"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Choosing the fixed bandwidth 
+\begin_inset Formula $h$
+\end_inset
+
+ entails a trade-off.
+ On the one hand, high-density regions are smoothed appropriately and we
+ can recover small-scale features if the bandwidth is small.
+ However, low-density regions will be undersmoothed.
+ On the other hand, low-density regions can be smoothed appropriately with
+ a larger bandwidth.
+ Unfortunately, such a bandwidth choice will oversmooth high-density regions
+ and mask small-scale features.
+\end_layout
+
+\begin_layout Standard
+Terrell and Scott considered two variable-bandwidth KDEs to alleviate this
+ problem 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Terrell1992"
+
+\end_inset
+
+.
+ 
+\emph on
+Balloon estimators
+\emph default
+ have a bandwidth that depends on the evaluation point, i.e.
+ the point at which they are evaluated,
+\begin_inset Formula 
+\begin{equation}
+\hat{f}\left(x\right)=\frac{1}{nh\left(x\right)}\sum_{i=1}^{n}K\left(\frac{X_{i}-x}{h\left(x\right)}\right).\label{eq:balloon-estimator}
+\end{equation}
+
+\end_inset
+
+The bandwidth of 
+\emph on
+sample-smoothing estimators
+\emph default
+ depends on the sample associated with each kernel such that
+\begin_inset Formula 
+\begin{equation}
+\hat{f}\left(x\right)=\frac{1}{n}\sum_{i=1}^{n}\frac{1}{h\left(X_{i}\right)}K\left(\frac{X_{i}-x}{h\left(X_{i}\right)}\right).\label{eq:smoothing-estimator}
+\end{equation}
+
+\end_inset
+
+The latter yield 
+\emph on
+bona fide
+\emph default
+ density estimates, i.e.
+ 
+\begin_inset Formula $\int_{-\infty}^{\infty}dx\,\hat{f}\left(x\right)=1$
+\end_inset
+
+, because each term of the sum in Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:smoothing-estimator"
+
+\end_inset
+
+ integrates to unity.
+ In general, balloon estimators are not proper densities themselves.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+References to examples of balloon and sample-smoothing estimators.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Discussion about shifts.
+ Combine the two.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We discuss mathematical preliminaries in Section
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:preliminaries"
+
+\end_inset
+
+.
+ In Sections
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:balloon"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:smoothing"
+
+\end_inset
+
+, we define shifted balloon and sample-smoothing estimators, respectively.
+ We apply our method to density estimators with gamma, log-normal, Birnbaum-Saun
+ders, inverse Gaussian and reciprocal inverse Gaussian kernels in Section
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:application"
+
+\end_inset
+
+ and derive plugin expressions for bandwidth selection.
+ We conclude in Section
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:discussion"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Preliminaries
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:preliminaries"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The estimators in Eqs.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:standard-kde"
+
+\end_inset
+
+ to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:smoothing-estimator"
+
+\end_inset
+
+ can all be expressed as a general weight function estimators which are
+ defined as
+\begin_inset Formula 
+\begin{equation}
+\hat{f}\left(x\right)=\frac{1}{n}\sum_{i=1}^{\infty}W\left(X_{i},x\right),\label{eq:generalised-estimator}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $W\left(y,x\right)$
+\end_inset
+
+ is a non-negative function that peaks near 
+\begin_inset Formula $y=x$
+\end_inset
+
+.
+ Because the samples are i.i.d., the first moment of the generalised KDE is
+\begin_inset Formula 
+\begin{align*}
+\left\langle \hat{f}\left(x\right)\right\rangle  & =\left\langle W\left(X,x\right)\right\rangle ,
+\end{align*}
+
+\end_inset
+
+where the expectation is with respect to the data 
+\begin_inset Formula $X$
+\end_inset
+
+.
+ The second moment is
+\begin_inset Formula 
+\begin{align*}
+\left\langle \hat{f}^{2}\left(x\right)\right\rangle  & =\frac{1}{n^{2}}\left\langle \sum_{i,j=1}^{n}W\left(X_{i},x\right)W\left(X_{j},x\right)\right\rangle \\
+ & =\frac{1}{n}\left\langle W^{2}\left(X,x\right)\right\rangle +\frac{n-1}{n}\left\langle W\left(X,x\right)\right\rangle ^{2}
+\end{align*}
+
+\end_inset
+
+such that the variance is given by
+\begin_inset Formula 
+\begin{align*}
+\var\hat{f}\left(x\right) & =\left\langle \hat{f}^{2}(x)\right\rangle -\left\langle \hat{f}(x)\right\rangle ^{2}\\
+ & =\frac{1}{n}\left(\left\langle W^{2}\left(X,x\right)\right\rangle -\left\langle W\left(X,x\right)\right\rangle ^{2}\right).
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The canonical criterion for assessing the local quality of density estimates
+ is the mean squared error (MSE) and is defined as
+\end_layout
+
+\begin_layout Standard
 \begin_inset Formula 
 \[
-\mse_{h}(x)=\left\langle \left(f(x)-\hat{f}_{h}(x)\right)^{2}\right\rangle ,
+\mse f(x)=\left\langle \left(f(x)-\hat{f}(x)\right)^{2}\right\rangle 
 \]
 
 \end_inset
 
-where the expectation is taken with respect to the generating density 
-\begin_inset Formula $f$
+for a given evaluation point 
+\begin_inset Formula $x$
 \end_inset
 
 .
  We rewrite the MSE in terms of squared bias and variance such that 
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Formula 
 \begin{align*}
-\mse_{h}\left(x\right) & =\left\langle \left(f(x)-\hat{f}_{h}(x)\right)^{2}\right\rangle \\
- & =f^{2}\left(x\right)-2f\left(x\right)\hat{f}_{h}\left(x\right)+\left\langle \hat{f}_{h}^{2}\left(x\right)\right\rangle \pm\left\langle \hat{f}_{h}\left(x\right)\right\rangle ^{2}\\
+\mse\left(x\right) & =\left\langle \left(f(x)-\hat{f}(x)\right)^{2}\right\rangle \\
+ & =f^{2}\left(x\right)-2f\left(x\right)\hat{f}\left(x\right)+\left\langle \hat{f}^{2}\left(x\right)\right\rangle \pm\left\langle \hat{f}\left(x\right)\right\rangle ^{2}\\
  & =\underbrace{\left\langle \hat{f}_{h}^{2}\left(x\right)\right\rangle -\left\langle \hat{f}_{h}\left(x\right)\right\rangle ^{2}}_{\var_{h}\left(x\right)}+\underbrace{\left(\left\langle \hat{f}_{h}\left(x\right)\right\rangle -f\left(x\right)\right)^{2}}_{\bias_{h}^{2}\left(x\right)}
 \end{align*}
 
@@ -204,14 +488,22 @@ status open
  
 \begin_inset Formula 
 \begin{align*}
-\mse_{h}(x) & =\bias_{h}^{2}(x)+\var_{h}(x),\\
-\text{where}\quad\bias_{h}(x) & =\left\langle \hat{f}_{h}(x)\right\rangle -f(x)\\
-\text{and}\quad\var_{h}(x) & =\left\langle \hat{f}_{h}^{2}(x)\right\rangle -\left\langle \hat{f}_{h}(x)\right\rangle ^{2}.
+\mse\hat{f}(x) & =\bias^{2}\hat{f}(x)+\var\hat{f}(x),\\
+\text{where}\quad\bias\hat{f}(x) & =\left\langle \hat{f}(x)\right\rangle -f(x)\\
+ & =\left\langle W\left(X,x\right)\right\rangle -f\left(x\right).
 \end{align*}
 
 \end_inset
 
+The mean integrated squared error (MISE) is defined as
+\begin_inset Formula 
+\[
+\mise\hat{f}=\int dx\,\mse\hat{f}\left(x\right)
+\]
 
+\end_inset
+
+and will be our criterion for the global quality of density estimates.
 \end_layout
 
 \begin_layout Section
@@ -226,10 +518,31 @@ name "sec:balloon"
 \end_layout
 
 \begin_layout Standard
-In the following, we build on the results by Terrell and Scott to derive
- the asymptotic properties of estimators with symmetric kernels whose mean
- differs from the associated sample and whose bandwidth depends on the evaluatio
-n point.
+A shifted balloon estimator is a kernel density estimator whose bandwidth
+ depends on the point 
+\begin_inset Formula $x$
+\end_inset
+
+ at which it is evaluated, i.e.
+ 
+\begin_inset Formula 
+\begin{equation}
+\hat{f}_{h}(x)=\frac{1}{n}\sum_{i=1}^{n}\frac{1}{h(x)}K\left(\frac{X_{i}-x-\delta(x)}{h(x)}\right),\label{eq:balloon-definition}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\delta(x)$
+\end_inset
+
+ is a shift which vanishes in the limit 
+\begin_inset Formula $n\rightarrow\infty$
+\end_inset
+
+.
+ We formalise the notion of a kernel in the following definition before
+ deriving the asymptotic properties.
 \end_layout
 
 \begin_layout Definition
@@ -265,44 +578,35 @@ where
 \end_layout
 
 \begin_layout Standard
-Having formalised the notion of a kernel, we extend the expression for balloon
- estimators by adding a small shift 
-\begin_inset Formula $\delta\left(x\right)$
+We assume that the generating distribution 
+\begin_inset Formula $f$
 \end_inset
 
- to the argument of the kernel and derive their mean square error.
-\end_layout
-
-\begin_layout Definition
-A shifted balloon estimator is a kernel density estimator whose bandwidth
- depends on the point 
-\begin_inset Formula $x$
+ is supported on an interval bounded below by 
+\begin_inset Formula $a$
 \end_inset
 
- at which it is evaluated, i.e.
- 
-\begin_inset Formula 
-\begin{equation}
-\hat{f}_{h}(x)=\frac{1}{n}\sum_{i=1}^{n}\frac{1}{h(x)}K\left(\frac{X_{i}-x-\delta(x)}{h(x)}\right),\label{eq:balloon-definition}
-\end{equation}
-
+ and above by 
+\begin_inset Formula $b$
 \end_inset
 
-where 
-\begin_inset Formula $\delta(x)$
+; the limits 
+\begin_inset Formula $a$
 \end_inset
 
- is a shift which vanishes in the limit 
-\begin_inset Formula $h(x)\rightarrow0$
+ and 
+\begin_inset Formula $b$
 \end_inset
 
-.
- 
-\end_layout
+ may extend to 
+\begin_inset Formula $-\infty$
+\end_inset
 
-\begin_layout Standard
-To make further progress, we need to evaluate the first two moments of the
- estimator in the limit of small bandwidth.
+ and 
+\begin_inset Formula $\infty$
+\end_inset
+
+, respectively.
 \end_layout
 
 \begin_layout Theorem
@@ -312,7 +616,11 @@ name "thm:balloon-moments"
 
 \end_inset
 
- The mean and variance of a shifted balloon estimator are 
+ The mean and variance of a shifted balloon estimator with order-
+\begin_inset Formula $p$
+\end_inset
+
+ kernel are 
 \begin_inset Formula 
 \begin{align}
 \left\langle \hat{f}_{h}(x)\right\rangle  & =\sum_{k=0}^{\infty}A_{k}m_{k}(z(a,x),z(b,x))\label{eq:balloon-mean}\\
@@ -379,13 +687,9 @@ See the appendix for a proof.
 \begin_inset Formula $k=p$
 \end_inset
 
- terms contribute to leading order in Eq.
-\begin_inset space ~
-\end_inset
-
-
+ terms contribute to leading order in 
 \begin_inset CommandInset ref
-LatexCommand eqref
+LatexCommand ref
 reference "eq:balloon-mean"
 
 \end_inset
@@ -399,13 +703,9 @@ reference "eq:balloon-mean"
 \begin_inset Formula $0<k<p$
 \end_inset
 
- according to Eq.
-\begin_inset space ~
-\end_inset
-
-
+ according to 
 \begin_inset CommandInset ref
-LatexCommand eqref
+LatexCommand ref
 reference "eq:kernel-properties"
 
 \end_inset
@@ -418,13 +718,9 @@ reference "eq:kernel-properties"
 \begin_inset Formula $h(x)$
 \end_inset
 
- according to Eq.
-\begin_inset space ~
-\end_inset
-
-
+ according to 
 \begin_inset CommandInset ref
-LatexCommand eqref
+LatexCommand ref
 reference "eq:balloon-first-moment-coefficient"
 
 \end_inset
@@ -441,14 +737,14 @@ reference "eq:balloon-first-moment-coefficient"
 
 
 \begin_inset CommandInset ref
-LatexCommand eqref
+LatexCommand ref
 reference "eq:balloon-mean"
 
 \end_inset
 
  and 
 \begin_inset CommandInset ref
-LatexCommand eqref
+LatexCommand ref
 reference "eq:balloon-variance"
 
 \end_inset
@@ -511,7 +807,7 @@ key "Chen2000"
 Shifted sample smoothing estimators
 \begin_inset CommandInset label
 LatexCommand label
-name "sec:sample-smoothing"
+name "sec:smoothing"
 
 \end_inset
 
@@ -632,6 +928,28 @@ key "Terrell1992"
 .
 \end_layout
 
+\begin_layout Section
+Application
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:application"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Discussion
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:discussion"
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section*
 \start_of_appendix
 Appendix
@@ -653,39 +971,19 @@ is given by
 \begin_inset Formula 
 \begin{align}
 L & =\sum_{k=0}^{\infty}A_{k}\left(x\right)\int_{z\left(a,x\right)}^{z\left(b,x\right)}dz\,\phi\left(z\right)z^{k},\nonumber \\
-\text{where}\quad A_{k}\left(x\right) & =\sum_{j=k}^{\infty}\frac{\theta^{\left(j\right)}\left(x\right)}{k!\left(j-k\right)!}h^{k}\left(x\right)\delta^{j-k}\left(x\right)\nonumber \\
+\text{where}\quad A_{k}\left(x\right) & =\sum_{j=k}^{\infty}\frac{1}{k!\left(j-k\right)!}h^{k}\left(x\right)\delta^{j-k}\left(x\right)\frac{d^{j}\theta\left(x\right)}{dx^{j}}\nonumber \\
 \text{and}\quad z\left(y,x\right) & =\frac{y-\delta\left(x\right)-x}{h\left(x\right)}.\label{eq:balloon-change-of-variables}
 \end{align}
 
 \end_inset
 
-The expression 
-\begin_inset Formula $\theta^{\left(j\right)}\left(x\right)$
-\end_inset
 
- denotes the 
-\begin_inset Formula $j^{\text{th}}$
-\end_inset
-
- derivative of 
-\begin_inset Formula $\theta$
-\end_inset
-
- evaluated at 
-\begin_inset Formula $x$
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Proof
-We make the change of variables in Eq.
-\begin_inset space ~
-\end_inset
-
-
+We make the change of variables in 
 \begin_inset CommandInset ref
-LatexCommand eqref
+LatexCommand ref
 reference "eq:balloon-change-of-variables"
 
 \end_inset
@@ -710,7 +1008,7 @@ Expanding
  yields
 \begin_inset Formula 
 \[
-L=\int_{z\left(a,x\right)}^{z\left(b,x\right)}dz\,\phi\left(z\right)\sum_{j=0}^{\infty}\frac{\theta^{\left(j\right)}\left(x\right)}{j!}\left(\delta\left(x\right)+zh\left(x\right)\right)^{j}.
+L=\int_{z\left(a,x\right)}^{z\left(b,x\right)}dz\,\phi\left(z\right)\sum_{j=0}^{\infty}\frac{1}{j!}\left(\delta\left(x\right)+zh\left(x\right)\right)^{j}\frac{d^{j}\theta\left(x\right)}{dx^{j}}.
 \]
 
 \end_inset
@@ -718,9 +1016,9 @@ L=\int_{z\left(a,x\right)}^{z\left(b,x\right)}dz\,\phi\left(z\right)\sum_{j=0}^{
 Using the binomial theorem and exchanging the order of summation gives
 \begin_inset Formula 
 \begin{align*}
-L & =\int_{z\left(a,x\right)}^{z\left(b,x\right)}dz\,\phi\left(z\right)\sum_{j=0}^{\infty}\frac{\theta^{\left(j\right)}\left(x\right)}{j!}\sum_{k=0}^{j}\binom{j}{k}z^{k}h^{k}\left(x\right)\delta^{j-k}\left(x\right)\\
+L & =\int_{z\left(a,x\right)}^{z\left(b,x\right)}dz\,\phi\left(z\right)\sum_{j=0}^{\infty}\frac{1}{j!}\sum_{k=0}^{j}\binom{j}{k}z^{k}h^{k}\left(x\right)\delta^{j-k}\left(x\right)\frac{d^{j}\theta\left(x\right)}{dx^{j}}\\
  & =\sum_{k=0}^{\infty}A_{k}\left(x\right)\int_{z\left(a,x\right)}^{z\left(b,x\right)}dz\,\phi\left(z\right)z^{k},\\
-\text{where}\quad A_{k}\left(x\right) & =\sum_{j=k}^{\infty}\frac{\theta^{\left(j\right)}\left(x\right)}{k!\left(j-k\right)!}h^{k}\left(x\right)\delta^{j-k}\left(x\right)
+\text{where}\quad A_{k}\left(x\right) & =\sum_{j=k}^{\infty}\frac{1}{k!\left(j-k\right)!}h^{k}\left(x\right)\delta^{j-k}\left(x\right)\frac{d^{j}\theta\left(x\right)}{dx^{j}}.
 \end{align*}
 
 \end_inset
@@ -766,13 +1064,9 @@ is a monotonic function of
 \end_layout
 
 \begin_layout Proof
-We make the change of variables in Eq.
-\begin_inset space ~
-\end_inset
-
-
+We make the change of variables in 
 \begin_inset CommandInset ref
-LatexCommand eqref
+LatexCommand ref
 reference "eq:smoothing-change-of-variables"
 
 \end_inset
@@ -799,13 +1093,9 @@ For fixed
 \begin_inset Formula $z$
 \end_inset
 
-, we express the second term in Eq.
-\begin_inset space ~
-\end_inset
-
-
+, we express the second term in 
 \begin_inset CommandInset ref
-LatexCommand eqref
+LatexCommand ref
 reference "eq:smoothing-transformed"
 
 \end_inset
@@ -851,24 +1141,16 @@ key "Howie2008"
 
 \end_inset
 
-such that the contour integral in Eq.
-\begin_inset space ~
-\end_inset
-
-
+such that the contour integral in 
 \begin_inset CommandInset ref
-LatexCommand eqref
+LatexCommand ref
 reference "eq:contour-integral"
 
 \end_inset
 
- is indeed equal to the second term in Eq.
-\begin_inset space ~
-\end_inset
-
-
+ is indeed equal to the second term in 
 \begin_inset CommandInset ref
-LatexCommand eqref
+LatexCommand ref
 reference "eq:smoothing-transformed"
 
 \end_inset
@@ -927,13 +1209,9 @@ such that
 \end_inset
 
 .
- Substituting back into Eq.
-\begin_inset space ~
-\end_inset
-
-
+ Substituting back into 
 \begin_inset CommandInset ref
-LatexCommand eqref
+LatexCommand ref
 reference "eq:smoothing-transformed"
 
 \end_inset
@@ -972,13 +1250,9 @@ reference "thm:balloon-moments"
 
 \end_inset
 
-The first moment of the shifted balloon estimator defined in Eq.
-\begin_inset space ~
-\end_inset
-
-
+The first moment of the shifted balloon estimator defined in 
 \begin_inset CommandInset ref
-LatexCommand eqref
+LatexCommand ref
 reference "eq:balloon-definition"
 
 \end_inset
@@ -1075,13 +1349,9 @@ reference "thm:sample-smoothing-moments"
 
 \end_inset
 
-The first moment of the shifted sample smoothing estimator defined in Eq.
-\begin_inset space ~
-\end_inset
-
-
+The first moment of the shifted sample smoothing estimator defined in 
 \begin_inset CommandInset ref
-LatexCommand eqref
+LatexCommand ref
 reference "eq:sample-point-definition"
 
 \end_inset
@@ -1125,13 +1395,9 @@ For fixed
 \begin_inset Formula $\mathcal{I}(z,x)$
 \end_inset
 
- in Eq.
-\begin_inset space ~
-\end_inset
-
-
+ in 
 \begin_inset CommandInset ref
-LatexCommand eqref
+LatexCommand ref
 reference "eq:smoothing-mean-transformed"
 
 \end_inset
@@ -1157,13 +1423,9 @@ where
 \end_inset
 
 .
- We expand the integrand in Eq.
-\begin_inset space ~
-\end_inset
-
-
+ We expand the integrand in 
 \begin_inset CommandInset ref
-LatexCommand eqref
+LatexCommand ref
 reference "eq:smoothing-mean-contour"
 
 \end_inset
@@ -1208,13 +1470,9 @@ such that
 \end_inset
 
 .
- Substituting back into Eq.
-\begin_inset space ~
-\end_inset
-
-
+ Substituting back into 
 \begin_inset CommandInset ref
-LatexCommand eqref
+LatexCommand ref
 reference "eq:smoothing-mean-transformed"
 
 \end_inset
@@ -1277,13 +1535,9 @@ and the integrand becomes
 \end_inset
 
 .
- Substituting back into Eq.
-\begin_inset space ~
-\end_inset
-
-
+ Substituting back into 
 \begin_inset CommandInset ref
-LatexCommand eqref
+LatexCommand ref
 reference "eq:smoothing-var-transformed"
 
 \end_inset
