@@ -206,7 +206,19 @@ key "Silverman1986"
 \end_inset
 
 .
- 
+ We assume that 
+\begin_inset Formula $f$
+\end_inset
+
+ is supported on the real line; unless otherwise stated 
+\begin_inset Formula $\int$
+\end_inset
+
+ will refer to an integral over the range 
+\begin_inset Formula $\left(-\infty,\infty\right)$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -265,7 +277,7 @@ bona fide
 \emph default
  density estimates, i.e.
  
-\begin_inset Formula $\int_{-\infty}^{\infty}dx\,\hat{f}\left(x\right)=1$
+\begin_inset Formula $\int dx\,\hat{f}\left(x\right)=1$
 \end_inset
 
 , because each term of the sum in Eq.
@@ -527,7 +539,7 @@ A shifted balloon estimator is a kernel density estimator whose bandwidth
  
 \begin_inset Formula 
 \begin{equation}
-\hat{f}_{h}(x)=\frac{1}{n}\sum_{i=1}^{n}\frac{1}{h(x)}K\left(\frac{X_{i}-x-\delta(x)}{h(x)}\right),\label{eq:balloon-definition}
+\hat{f}(x)=\frac{1}{n}\sum_{i=1}^{n}\frac{1}{h(x)}K\left(\frac{X_{i}-x-\delta(x)}{h(x)}\right),\label{eq:balloon-definition}
 \end{equation}
 
 \end_inset
@@ -541,8 +553,15 @@ where
 \end_inset
 
 .
- We formalise the notion of a kernel in the following definition before
- deriving the asymptotic properties.
+ Following Terrell and Scott, we formalise the notion of a kernel in the
+ following definition before deriving the asymptotic properties 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Terrell1992"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Definition
@@ -557,9 +576,11 @@ An order-
  such that 
 \begin_inset Formula 
 \begin{equation}
-\begin{aligned}m_{k}\left(\alpha,\beta\right) & \equiv\int_{\alpha}^{\beta}dz\,K(z)z^{k} & \kappa\left(\alpha,\beta\right) & \equiv\int_{\alpha}^{\beta}dz\,K^{2}(z)\\
-m_{k} & \equiv\lim_{-\alpha,\beta\rightarrow\infty}m_{k}\left(\alpha,\beta\right) & \kappa & \equiv\lim_{-\alpha,\beta\rightarrow\infty}\kappa\left(\alpha,\beta\right)\\
-m_{k} & =1\quad\text{if }k=0,\,p & m_{k} & =0\quad\text{if }0<k<p,
+\begin{aligned}m_{k} & \equiv\int dz\,K(z)z^{k} & \kappa_{k} & \equiv\int dz\,K^{2}(z)z^{k}\\
+m_{k} & =\begin{cases}
+1 & \text{if }k=0,\,p\\
+0 & \text{if }0<k<p
+\end{cases} & 0 & <\kappa_{0}<\infty,
 \end{aligned}
 \label{eq:kernel-properties}
 \end{equation}
@@ -577,38 +598,6 @@ where
  moment of the kernel.
 \end_layout
 
-\begin_layout Standard
-We assume that the generating distribution 
-\begin_inset Formula $f$
-\end_inset
-
- is supported on an interval bounded below by 
-\begin_inset Formula $a$
-\end_inset
-
- and above by 
-\begin_inset Formula $b$
-\end_inset
-
-; the limits 
-\begin_inset Formula $a$
-\end_inset
-
- and 
-\begin_inset Formula $b$
-\end_inset
-
- may extend to 
-\begin_inset Formula $-\infty$
-\end_inset
-
- and 
-\begin_inset Formula $\infty$
-\end_inset
-
-, respectively.
-\end_layout
-
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
@@ -616,38 +605,61 @@ name "thm:balloon-moments"
 
 \end_inset
 
- The mean and variance of a shifted balloon estimator with order-
+ The first two moments of a shifted balloon estimator with order-
 \begin_inset Formula $p$
 \end_inset
 
  kernel are 
 \begin_inset Formula 
 \begin{align}
-\left\langle \hat{f}_{h}(x)\right\rangle  & =\sum_{k=0}^{\infty}A_{k}m_{k}(z(a,x),z(b,x))\label{eq:balloon-mean}\\
-\text{and}\quad\var\hat{f}_{h}^{2}(x) & =\frac{f(x)\kappa(z(a,x),z(b,x))}{nh(x)}+\mathcal{O}\left(n^{-1}\right),\label{eq:balloon-variance}\\
-\text{where}\quad A_{k} & =h^{k}(x)\sum_{j=k}^{\infty}\frac{f^{(j)}(x)}{k!(j-k)!}\delta^{j-k}(x)\label{eq:balloon-first-moment-coefficient}\\
-\mbox{\text{and}}\quad z(y,x) & =\frac{y-x-\delta(x)}{h(x)},\nonumber 
+\left\langle \hat{f}\left(x\right)\right\rangle  & =A_{0}\left(x\right)+A_{p}\left(x\right)+O\left(h^{p+1}\left(x\right)\right)\label{eq:balloon-mean}\\
+\text{and}\quad\left\langle \hat{f}_{h}^{2}\left(x\right)\right\rangle  & =\frac{f\left(x\right)\kappa}{nh\left(x\right)}+O\left(n^{-1}\right),\label{eq:balloon-square}\\
+\text{where}\quad A_{k}\left(x\right) & =h^{k}(x)\sum_{j=k}^{\infty}\frac{f^{(j)}(x)}{k!(j-k)!}\delta^{j-k}\left(x\right)\label{eq:balloon-first-moment-coefficient}
 \end{align}
 
 \end_inset
 
-and the factorial is defined such that 
-\begin_inset Formula $0!\equiv1$
+and 
+\begin_inset Formula $f^{(j)}(x)$
 \end_inset
 
- and 
-\begin_inset Formula $j!\equiv0$
+ denotes the 
+\begin_inset Formula $j^{\mathrm{th}}$
 \end_inset
 
- if 
-\begin_inset Formula $j<0$
+ derivative of 
+\begin_inset Formula $f$
+\end_inset
+
+ evaluated at 
+\begin_inset Formula $x$
 \end_inset
 
 .
- 
+ The factorial is defined such that 
+\begin_inset Formula $0!\equiv1$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
+We are typically interested in second-order kernels such that 
+\begin_inset Formula 
+\begin{align*}
+\left\langle \hat{f}\left(x\right)\right\rangle  & =f\left(x\right)+\delta\left(x\right)f'\left(x\right)+\frac{h^{2}\left(x\right)}{2}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 See the appendix for a proof.
  Consider the behaviour of the density estimator at a point 
 \begin_inset Formula $x$
@@ -745,7 +757,7 @@ reference "eq:balloon-mean"
  and 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "eq:balloon-variance"
+reference "eq:balloon-square"
 
 \end_inset
 
@@ -797,6 +809,11 @@ key "Chen2000"
 \[
 \mise_{h}=\int_{a}^{b}dx\left[\delta(x)f'(x)+\frac{h^{p}(x)}{p!}f^{(p)}(x)\right]^{2}+\frac{\kappa}{n}\left\langle h^{-1}(x)\right\rangle .
 \]
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -962,18 +979,17 @@ The integral
 \begin_layout Lemma
 \begin_inset Formula 
 \[
-L=\int_{a}^{b}\frac{dy}{h\left(x\right)}\phi\left(\frac{y-\delta\left(x\right)-x}{h\left(x\right)}\right)\theta\left(y\right)
+L=\int\frac{dy}{h\left(x\right)}\phi\left(\frac{y-\delta\left(x\right)-x}{h\left(x\right)}\right)\theta\left(y\right)
 \]
 
 \end_inset
 
 is given by
 \begin_inset Formula 
-\begin{align}
-L & =\sum_{k=0}^{\infty}A_{k}\left(x\right)\int_{z\left(a,x\right)}^{z\left(b,x\right)}dz\,\phi\left(z\right)z^{k},\nonumber \\
-\text{where}\quad A_{k}\left(x\right) & =\sum_{j=k}^{\infty}\frac{1}{k!\left(j-k\right)!}h^{k}\left(x\right)\delta^{j-k}\left(x\right)\frac{d^{j}\theta\left(x\right)}{dx^{j}}\nonumber \\
-\text{and}\quad z\left(y,x\right) & =\frac{y-\delta\left(x\right)-x}{h\left(x\right)}.\label{eq:balloon-change-of-variables}
-\end{align}
+\begin{align*}
+L & =\sum_{k=0}^{\infty}A_{k}\left(x\right)\int dz\,\phi\left(z\right)z^{k},\\
+\text{where}\quad A_{k}\left(x\right) & =\sum_{j=k}^{\infty}\frac{1}{k!\left(j-k\right)!}h^{k}\left(x\right)\delta^{j-k}\left(x\right)\frac{d^{j}\theta\left(x\right)}{dx^{j}}.
+\end{align*}
 
 \end_inset
 
@@ -981,18 +997,19 @@ L & =\sum_{k=0}^{\infty}A_{k}\left(x\right)\int_{z\left(a,x\right)}^{z\left(b,x\
 \end_layout
 
 \begin_layout Proof
-We make the change of variables in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:balloon-change-of-variables"
+We make the change of variables 
+\begin_inset Formula 
+\[
+z=\frac{y-\delta\left(x\right)-x}{h\left(x\right)}
+\]
 
 \end_inset
 
- such that, holding x constant,
+such that, holding x constant,
 \begin_inset Formula 
 \begin{align*}
 dz & =\frac{dy}{h\left(x\right)}\\
-\text{and}\quad L & =\int_{z\left(a,x\right)}^{z\left(b,x\right)}dz\,\phi\left(z\right)\theta\left(x+\delta\left(x\right)+zh\left(x\right)\right).
+\text{and}\quad L & =\int dz\,\phi\left(z\right)\theta\left(x+\delta\left(x\right)+zh\left(x\right)\right).
 \end{align*}
 
 \end_inset
@@ -1008,7 +1025,7 @@ Expanding
  yields
 \begin_inset Formula 
 \[
-L=\int_{z\left(a,x\right)}^{z\left(b,x\right)}dz\,\phi\left(z\right)\sum_{j=0}^{\infty}\frac{1}{j!}\left(\delta\left(x\right)+zh\left(x\right)\right)^{j}\frac{d^{j}\theta\left(x\right)}{dx^{j}}.
+L=\int dz\,\phi\left(z\right)\sum_{j=0}^{\infty}\frac{1}{j!}\left(\delta\left(x\right)+zh\left(x\right)\right)^{j}\frac{d^{j}\theta\left(x\right)}{dx^{j}}.
 \]
 
 \end_inset
@@ -1016,8 +1033,8 @@ L=\int_{z\left(a,x\right)}^{z\left(b,x\right)}dz\,\phi\left(z\right)\sum_{j=0}^{
 Using the binomial theorem and exchanging the order of summation gives
 \begin_inset Formula 
 \begin{align*}
-L & =\int_{z\left(a,x\right)}^{z\left(b,x\right)}dz\,\phi\left(z\right)\sum_{j=0}^{\infty}\frac{1}{j!}\sum_{k=0}^{j}\binom{j}{k}z^{k}h^{k}\left(x\right)\delta^{j-k}\left(x\right)\frac{d^{j}\theta\left(x\right)}{dx^{j}}\\
- & =\sum_{k=0}^{\infty}A_{k}\left(x\right)\int_{z\left(a,x\right)}^{z\left(b,x\right)}dz\,\phi\left(z\right)z^{k},\\
+L & =\int dz\,\phi\left(z\right)\sum_{j=0}^{\infty}\frac{1}{j!}\sum_{k=0}^{j}\binom{j}{k}z^{k}h^{k}\left(x\right)\delta^{j-k}\left(x\right)\frac{d^{j}\theta\left(x\right)}{dx^{j}}\\
+ & =\sum_{k=0}^{\infty}A_{k}\left(x\right)\int dz\,\phi\left(z\right)z^{k},\\
 \text{where}\quad A_{k}\left(x\right) & =\sum_{j=k}^{\infty}\frac{1}{k!\left(j-k\right)!}h^{k}\left(x\right)\delta^{j-k}\left(x\right)\frac{d^{j}\theta\left(x\right)}{dx^{j}}.
 \end{align*}
 
@@ -1038,7 +1055,7 @@ L=\int_{a}^{b}\frac{dy}{h\left(y\right)}\phi\left(\frac{y+\delta\left(y\right)-x
 is given by
 \begin_inset Formula 
 \begin{align*}
-L & =\sum_{k=0}^{\infty}B_{k}\left(x\right)\int_{z\left(a,x\right)}^{z\left(b,x\right)}dz\,\phi\left(z\right)z^{k},\\
+L & =\sum_{k=0}^{\infty}B_{k}\left(x\right)\int dz\,\phi\left(z\right)z^{k},\\
 \text{where}\quad B_{k}\left(x\right) & =\sum_{j=k}^{\infty}\frac{1}{\left(j-k\right)!k!}\frac{\partial^{j}}{\partial x^{j}}\left(\theta\left(x\right)h^{k}\left(x\right)\left(-\delta\left(x\right)\right)^{j-k}\right)
 \end{align*}
 
@@ -1080,7 +1097,7 @@ reference "eq:smoothing-change-of-variables"
 \begin{align}
 dz & =\left(\frac{1+\delta'\left(y\right)}{h\left(y\right)}-\frac{y+\delta\left(y\right)-x}{h\left(y\right)}\frac{h'\left(y\right)}{h\left(y\right)}\right)dy\nonumber \\
  & =\frac{dy}{h\left(y\right)}\left(1+\delta'\left(y\right)-zh'\left(y\right)\right)\nonumber \\
-\text{and}\quad L & =\int_{z\left(a,x\right)}^{z\left(b,x\right)}dz\,\phi\left(z\right)\frac{\theta\left(y\left(z,x\right)\right)}{1+\delta'\left(y\left(z,x\right)\right)-zh'\left(y\left(z,x\right)\right)}.\label{eq:smoothing-transformed}
+\text{and}\quad L & =\int dz\,\phi\left(z\right)\frac{\theta\left(y\left(z,x\right)\right)}{1+\delta'\left(y\left(z,x\right)\right)-zh'\left(y\left(z,x\right)\right)}.\label{eq:smoothing-transformed}
 \end{align}
 
 \end_inset
@@ -1199,7 +1216,7 @@ key "Howie2008"
 )
 \begin_inset Formula 
 \[
-R_{j}=\sum_{k=0}^{j}\frac{z^{k}}{k!\left(j-k\right)!}\frac{\partial^{j}}{\partial x^{j}}\left(\theta\left(x\right)h^{k}\left(x\right)\left(-\delta\left(x\right)^{j-k}\right)\right)
+R_{j}=\sum_{k=0}^{j}\frac{z^{k}}{k!\left(j-k\right)!}\frac{\partial^{j}}{\partial x^{j}}\left(\theta\left(x\right)h^{k}\left(x\right)\left(-\delta\left(x\right)\right)^{j-k}\right)
 \]
 
 \end_inset
@@ -1219,341 +1236,10 @@ reference "eq:smoothing-transformed"
  and exchanging the order of summation yields
 \begin_inset Formula 
 \begin{align*}
-L & =\int_{z\left(a,x\right)}^{z\left(b,x\right)}dz\,\phi\left(z\right)\sum_{j=0}^{\infty}\sum_{k=0}^{j}\frac{z^{k}}{k!\left(j-k\right)!}\frac{\partial^{j}}{\partial x^{j}}\left(\theta\left(x\right)h^{k}\left(x\right)\left(-\delta\left(x\right)^{j-k}\right)\right)\\
- & =\sum_{k=0}^{\infty}B_{k}\left(x\right)\int_{z\left(a,x\right)}^{z\left(b,x\right)}dz\,\phi\left(z\right)z^{k}\\
-\text{where}\quad B_{k}\left(x\right) & =\sum_{j=k}^{\infty}\frac{1}{k!\left(j-k\right)!}\frac{\partial^{j}}{\partial x^{j}}\left(\theta\left(x\right)h^{k}\left(x\right)\left(-\delta\left(x\right)^{j-k}\right)\right).
+L & =\int dz\,\phi\left(z\right)\sum_{j=0}^{\infty}\sum_{k=0}^{j}\frac{z^{k}}{k!\left(j-k\right)!}\frac{\partial^{j}}{\partial x^{j}}\left(\theta\left(x\right)h^{k}\left(x\right)\left(-\delta\left(x\right)\right)^{j-k}\right)\\
+ & =\sum_{k=0}^{\infty}B_{k}\left(x\right)\int dz\,\phi\left(z\right)z^{k}\\
+\text{where}\quad B_{k}\left(x\right) & =\sum_{j=k}^{\infty}\frac{1}{k!\left(j-k\right)!}\frac{\partial^{j}}{\partial x^{j}}\left(\theta\left(x\right)h^{k}\left(x\right)\left(-\delta\left(x\right)\right)^{j-k}\right).
 \end{align*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Proof
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-Proof of Theorem 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "thm:balloon-moments"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-The first moment of the shifted balloon estimator defined in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:balloon-definition"
-
-\end_inset
-
- is 
-\begin_inset Formula 
-\[
-\left\langle \hat{f}_{h}(x)\right\rangle =\int_{a}^{b}\frac{dy}{h(x)}K\left(\frac{y-x-\delta(x)}{h(x)}\right)f(y).
-\]
-
-\end_inset
-
-We make the change of variables 
-\begin_inset Formula $z(y,x)=\frac{y-x-\delta(x)}{h(x)}$
-\end_inset
-
- and expand 
-\begin_inset Formula $f$
-\end_inset
-
- as a power series about 
-\begin_inset Formula $x$
-\end_inset
-
- such that 
-\begin_inset Formula 
-\begin{align*}
-\left\langle \hat{f}_{h}(x)\right\rangle  & =\int_{z(a,x)}^{z(b,x)}dz\,K\left(z\right)f(x+zh(x)+\delta(x))\\
- & =\sum_{j=0}^{\infty}\frac{f^{(j)}(x)}{j!}\int_{z(a,x)}^{z(b,x)}dz\,K\left(z\right)(zh(x)+\delta(x))^{j}.
-\end{align*}
-
-\end_inset
-
-Applying the binomial theorem yields 
-\begin_inset Formula 
-\begin{align*}
-\left\langle \hat{f}_{h}(x)\right\rangle  & =\sum_{j=0}^{\infty}\sum_{k=0}^{j}\binom{j}{k}\frac{f^{(j)}(x)}{j!}h^{k}(x)\delta^{j-k}(x)\int_{z(a,x)}^{z(b,x)}dz\,K\left(z\right)z^{k}\\
- & =\sum_{k=0}^{\infty}m_{k}(z(a,x),z(b,x))\sum_{j=k}^{\infty}\binom{j}{k}\frac{f^{(j)}(x)}{j!}h^{k}(x)\delta^{j-k}(x)\\
- & =\sum_{k=0}^{\infty}A_{k}m_{k}(z(a,x),z(b,x))\\
-\text{where}\quad A_{k} & =h^{k}(x)\sum_{j=k}^{\infty}\frac{f^{(j)}(x)}{k!\left(j-k\right)!}\delta^{j-k}(x).
-\end{align*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Proof
-The asymptotic variance is 
-\begin_inset Formula 
-\[
-\var\hat{f}_{h}(x)=\int_{a}^{b}\frac{dy}{nh^{2}(x)}K^{2}\left(\frac{y-x-\delta(x)}{h(x)}\right)f(y).
-\]
-
-\end_inset
-
-Using the same method as above yields 
-\begin_inset Formula 
-\begin{align*}
-\var\hat{f}_{h}(x) & =\int_{z\left(a,x\right)}^{z\left(b,x\right)}\frac{dz}{nh\left(x\right)}K^{2}\left(z\right)f\left(x+\delta\left(x\right)+h\left(x\right)z\right)\\
- & =\sum_{j=0}^{\infty}\frac{f^{\left(j\right)}\left(x\right)}{j!nh\left(x\right)}\int_{z\left(a,x\right)}^{z\left(b,x\right)}dzK^{2}\left(z\right)\left(\delta\left(x\right)+h\left(x\right)z\right)^{j}\\
- & =\sum_{k=0}^{\infty}\int_{z\left(a,x\right)}^{z\left(b,x\right)}dzK^{2}\left(z\right)z^{k}h^{k-1}\left(x\right)\sum_{j=k}^{\infty}\binom{j}{k}\frac{f^{\left(j\right)}\left(x\right)}{j!n}\delta^{j-k}\left(x\right)\\
- & =\frac{\kappa\left(z\left(b,x\right),z\left(a,x\right)\right)f\left(x\right)}{nh\left(x\right)}+\mathcal{O}\left(h^{0}\left(x\right)\right).
-\end{align*}
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Proof
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-Proof of Theorem 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "thm:sample-smoothing-moments"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-The first moment of the shifted sample smoothing estimator defined in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:sample-point-definition"
-
-\end_inset
-
- is 
-\begin_inset Formula 
-\[
-\left\langle \hat{f}_{h}(x)\right\rangle =\int_{a}^{b}\frac{dy}{h(y)}K\left(\frac{y+\delta(y)-x}{h(y)}\right)f(y).
-\]
-
-\end_inset
-
-We make the change of variables 
-\begin_inset Formula $z(y,x)=\frac{y+\delta(y)-x}{h(y)}$
-\end_inset
-
- and assume that 
-\begin_inset Formula $z(y,x)$
-\end_inset
-
- is monotonically increasing such that the inverse 
-\begin_inset Formula $y(z)$
-\end_inset
-
- exists.
- Then 
-\begin_inset Formula 
-\begin{align}
-dz & =\left[\frac{1+\delta'\left(y\right)}{h\left(y\right)}-\frac{y+\delta\left(y\right)-x}{h\left(y\right)}\frac{h'\left(y\right)}{h\left(y\right)}\right]dy\\
- & =\frac{1}{h\left(y\right)}\left[1+\delta'\left(y\right)-zh'\left(y\right)\right]dy\\
-\text{and}\quad\left\langle \hat{f}_{h}(x)\right\rangle  & =\int_{z(a,x)}^{z(b,x)}dz\,\frac{K\left(z\right)f(y(z))}{1+\delta'(y(z))-zh'(z(y,x))}.\label{eq:smoothing-mean-transformed}
-\end{align}
-
-\end_inset
-
-For fixed 
-\begin_inset Formula $z$
-\end_inset
-
-, we use the residue theorem to express the integrand 
-\begin_inset Formula $\mathcal{I}(z,x)$
-\end_inset
-
- in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:smoothing-mean-transformed"
-
-\end_inset
-
- as a contour integral 
-\begin_inset Formula 
-\begin{equation}
-\mathcal{I}(z,x)=\frac{1}{2\pi i}\oint_{\gamma}dy\,\frac{K\left(z\right)f(y)}{y+\delta(y)-x-zh(y)},\label{eq:smoothing-mean-contour}
-\end{equation}
-
-\end_inset
-
-where 
-\begin_inset Formula $\gamma$
-\end_inset
-
- is a right-hand contour around the simple pole defined by 
-\begin_inset Formula $y+\delta(y)-x-zh(y)=0$
-\end_inset
-
- and the point 
-\begin_inset Formula $y=x$
-\end_inset
-
-.
- We expand the integrand in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:smoothing-mean-contour"
-
-\end_inset
-
- as a power series in 
-\begin_inset Formula $h(x)z-\delta(y)$
-\end_inset
-
- and find 
-\begin_inset Formula 
-\[
-\mathcal{I}(z,x)=\frac{1}{2\pi i}\oint_{\gamma}dy\,\frac{K\left(z\right)f(y)}{y-x}\sum_{j=0}^{\infty}\left(\frac{zh(y)-\delta(y)}{y-x}\right)^{j}.
-\]
-
-\end_inset
-
-The 
-\begin_inset Formula $j^{\mathrm{th}}$
-\end_inset
-
- term in the sum gives rise to a pole of order 
-\begin_inset Formula $j+1$
-\end_inset
-
- at 
-\begin_inset Formula $y=x$
-\end_inset
-
-.
- After expansion using the binomial theorem, the corresponding residue is
- 
-\begin_inset Formula 
-\begin{align*}
-R_{j}(z,x) & =\frac{1}{j!}\left[\frac{\partial^{j}}{\partial y^{j}}\left(f(y)K(z)\left(zh(y)-\delta(y)\right)^{j}\right)\right]_{y=x}\\
- & =\sum_{k=0}^{j}\binom{j}{k}\frac{K(z)z^{k}}{j!}\frac{\partial^{j}}{\partial x^{j}}\left(f(x)h^{k}(x)(-\delta(x))^{j-k}\right)
-\end{align*}
-
-\end_inset
-
-such that 
-\begin_inset Formula $\mathcal{I}(z,x)=\sum_{j=0}^{\infty}R_{j}(z,x)$
-\end_inset
-
-.
- Substituting back into 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:smoothing-mean-transformed"
-
-\end_inset
-
- and integrating term by term yields 
-\begin_inset Formula 
-\begin{align*}
-\left\langle \hat{f}_{h}(x)\right\rangle  & =\sum_{j=0}^{\infty}\sum_{k=0}^{j}\frac{1}{k!\left(j-k\right)!}\frac{\partial^{j}}{\partial x^{j}}\left(f(x)h^{k}(x)(-\delta(x))^{j-k}\right)\int_{z(a,x)}^{z(b,x)}dz\,K(z)z^{k}\\
- & =\sum_{k=0}^{\infty}B_{k}m_{k}(z(a,x),z(b,x)),\\
-\text{where}\quad B_{k} & =\sum_{j=k}^{\infty}\frac{1}{k!\left(j-k\right)!}\frac{\partial^{j}}{\partial x^{j}}\left(f(x)h^{k}(x)(-\delta(x))^{j-k}\right).
-\end{align*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Proof
-The variance is 
-\begin_inset Formula 
-\[
-\var\hat{f}_{h}(x)=\int_{a}^{b}\frac{dy}{nh^{2}(y)}K^{2}\left(\frac{y+\delta(y)-x}{h(y)}\right)f(y).
-\]
-
-\end_inset
-
-Using the same change of variables as above yields 
-\begin_inset Formula 
-\begin{align}
-\var\hat{f}_{h}(x) & =\frac{1}{n}\int_{z(a,x)}^{z(b,x)}dz\frac{K^{2}\left(z\right)f(y(z))/h\left(y\left(z\right)\right)}{1+\delta'(y(z))-zh'(y(z))}.\label{eq:smoothing-var-transformed}
-\end{align}
-
-\end_inset
-
-We express the integrand as a contour integral and expand as a power series
- to find 
-\begin_inset Formula 
-\begin{align*}
-\mathcal{J}\left(z,x\right) & =\frac{1}{2\pi i}\oint_{\gamma}dy\frac{K^{2}\left(z\right)f\left(y\right)/h\left(y\right)}{y-x+\delta\left(y\right)-zh\left(y\right)}\\
- & =\frac{1}{2\pi i}\oint_{\gamma}dy\frac{K^{2}\left(z\right)f\left(y\right)}{h\left(y\right)\left(y-x\right)}\sum_{j=0}^{\infty}\left(\frac{zh\left(y\right)-\delta\left(y\right)}{y-x}\right)^{j}.
-\end{align*}
-
-\end_inset
-
-Using the binomial theorem, the residue due to the 
-\begin_inset Formula $j^{\mathrm{th}}$
-\end_inset
-
- term in the series is
-\begin_inset Formula 
-\begin{align*}
-S_{j}\left(z,x\right) & =\frac{1}{j!}\left[\frac{\partial^{j}}{\partial y^{j}}\left(\frac{f\left(y\right)K^{2}\left(z\right)}{h\left(y\right)}\left(zh\left(y\right)-\delta\left(y\right)\right)^{j}\right)\right]\\
- & =\sum_{k=0}^{j}\binom{j}{k}\frac{K^{2}(z)z^{k}}{j!}\frac{\partial^{j}}{\partial x^{j}}\left(f(x)h^{k-1}(x)(-\delta(x))^{j-k}\right)
-\end{align*}
-
-\end_inset
-
-and the integrand becomes 
-\begin_inset Formula $\mathcal{J}\left(z,x\right)=\sum_{j=0}^{\infty}S_{j}\left(z,x\right)$
-\end_inset
-
-.
- Substituting back into 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:smoothing-var-transformed"
-
-\end_inset
-
- yields
-\begin_inset Formula 
-\begin{align*}
-\var\hat{f}_{h}\left(x\right) & =\int_{z\left(a,x\right)}^{z\left(b,x\right)}\frac{dz}{n}\sum_{j=0}^{\infty}\sum_{k=0}^{j}\binom{j}{k}\frac{K^{2}(z)z^{k}}{j!}\frac{\partial^{j}}{\partial x^{j}}\left(f(x)h^{k-1}(x)(-\delta(x))^{j-k}\right)\\
- & =\sum_{k=0}^{\infty}\sum_{j=k}^{\infty}\frac{1}{nk!\left(j-k\right)!}\frac{\partial^{j}}{\partial x^{j}}\left(f(x)h^{k-1}(x)(-\delta(x))^{j-k}\right)\int_{z\left(a,x\right)}^{z\left(b,x\right)}dzK^{2}(z)z^{k}\\
- & =\frac{\kappa\left(z\left(b,x\right),z\left(a,x\right)\right)f\left(x\right)}{nh\left(x\right)}+\mathcal{O}\left(n^{-1}\right).
-\end{align*}
-
-\end_inset
-
-
-\end_layout
 
 \end_inset
 
