@@ -62,3 +62,6 @@ target/
 
 # Mac OSX
 .DS_Store
+
+# ipython
+.ipynb_checkpoints
