@@ -214,7 +214,7 @@ key "Silverman1986"
 \begin_inset Formula $\int$
 \end_inset
 
- will refer to an integral over the range 
+ will refer to an integral over the interval 
 \begin_inset Formula $\left(-\infty,\infty\right)$
 \end_inset
 
@@ -408,12 +408,11 @@ reference "eq:smoothing-estimator"
 
 \end_inset
 
- can all be expressed as a general weight function estimators which are
- defined as
+ can all be expressed as general weight function estimators defined by
 \begin_inset Formula 
-\begin{equation}
-\hat{f}\left(x\right)=\frac{1}{n}\sum_{i=1}^{\infty}W\left(X_{i},x\right),\label{eq:generalised-estimator}
-\end{equation}
+\begin{align}
+\hat{f}\left(x\right) & =\frac{1}{n}\sum_{i=1}^{\infty}W\left(X_{i},x\right),\label{eq:generalised-estimator}
+\end{align}
 
 \end_inset
 
@@ -422,15 +421,15 @@ where
 \end_inset
 
  is a non-negative function that peaks near 
-\begin_inset Formula $y=x$
+\begin_inset Formula $x=y$
 \end_inset
 
 .
- Because the samples are i.i.d., the first moment of the generalised KDE is
+ Because the samples are i.i.d., the first moment of the estimator is
 \begin_inset Formula 
-\begin{align*}
-\left\langle \hat{f}\left(x\right)\right\rangle  & =\left\langle W\left(X,x\right)\right\rangle ,
-\end{align*}
+\begin{align}
+\left\langle \hat{f}\left(x\right)\right\rangle  & =\left\langle W\left(X,x\right)\right\rangle ,\label{eq:generalised-mean}
+\end{align}
 
 \end_inset
 
@@ -448,12 +447,12 @@ where the expectation is with respect to the data
 
 \end_inset
 
-such that the variance is given by
+such that the variance becomes
 \begin_inset Formula 
-\begin{align*}
-\var\hat{f}\left(x\right) & =\left\langle \hat{f}^{2}(x)\right\rangle -\left\langle \hat{f}(x)\right\rangle ^{2}\\
- & =\frac{1}{n}\left(\left\langle W^{2}\left(X,x\right)\right\rangle -\left\langle W\left(X,x\right)\right\rangle ^{2}\right).
-\end{align*}
+\begin{align}
+\var\hat{f}\left(x\right) & =\left\langle \hat{f}^{2}(x)\right\rangle -\left\langle \hat{f}(x)\right\rangle ^{2}\nonumber \\
+ & =\frac{1}{n}\left(\left\langle W^{2}\left(X,x\right)\right\rangle -\left\langle W\left(X,x\right)\right\rangle ^{2}\right).\label{eq:generalised-variance}
+\end{align}
 
 \end_inset
 
@@ -499,11 +498,11 @@ status collapsed
 
  
 \begin_inset Formula 
-\begin{align*}
-\mse\hat{f}(x) & =\bias^{2}\hat{f}(x)+\var\hat{f}(x),\\
-\text{where}\quad\bias\hat{f}(x) & =\left\langle \hat{f}(x)\right\rangle -f(x)\\
- & =\left\langle W\left(X,x\right)\right\rangle -f\left(x\right).
-\end{align*}
+\begin{align}
+\mse\hat{f}(x) & =\bias^{2}\hat{f}(x)+\var\hat{f}(x),\nonumber \\
+\text{where}\quad\bias\hat{f}(x) & =\left\langle \hat{f}(x)\right\rangle -f(x)\label{eq:generalised-bias}\\
+ & =\left\langle W\left(X,x\right)\right\rangle -f\left(x\right).\nonumber 
+\end{align}
 
 \end_inset
 
@@ -518,43 +517,57 @@ The mean integrated squared error (MISE) is defined as
 and will be our criterion for the global quality of density estimates.
 \end_layout
 
-\begin_layout Section
-Shifted balloon estimator
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:balloon"
-
+\begin_layout Standard
+The balloon estimator in Eq.
+\begin_inset space ~
 \end_inset
 
 
-\end_layout
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:balloon-estimator"
 
-\begin_layout Standard
-A shifted balloon estimator is a kernel density estimator whose bandwidth
- depends on the point 
+\end_inset
+
+, the sample-smoothing estimator in Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:smoothing-estimator"
+
+\end_inset
+
+, and the estimators we consider in the following two sections have weight
+ functions of the form 
+\begin_inset Formula 
+\[
+W\left(X_{i},x\right)=\frac{1}{h\left(X_{i},x\right)}K\left(\frac{g\left(X_{i},x\right)}{h\left(X_{i},x\right)}\right).
+\]
+
+\end_inset
+
+The function 
+\begin_inset Formula $g\left(y,x\right)$
+\end_inset
+
+ specifies the dependence of the kernel on the evaluation point 
 \begin_inset Formula $x$
 \end_inset
 
- at which it is evaluated, i.e.
- 
-\begin_inset Formula 
-\begin{equation}
-\hat{f}(x)=\frac{1}{n}\sum_{i=1}^{n}\frac{1}{h(x)}K\left(\frac{X_{i}-x-\delta(x)}{h(x)}\right),\label{eq:balloon-definition}
-\end{equation}
-
+ and the sample 
+\begin_inset Formula $y$
 \end_inset
 
-where 
-\begin_inset Formula $\delta(x)$
+; the bandwidth 
+\begin_inset Formula $h\left(x,y\right)$
 \end_inset
 
- is a shift which vanishes in the limit 
-\begin_inset Formula $n\rightarrow\infty$
-\end_inset
-
-.
+ is variable.
  Following Terrell and Scott, we formalise the notion of a kernel in the
- following definition before deriving the asymptotic properties 
+ following definition 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Terrell1992"
@@ -565,6 +578,12 @@ key "Terrell1992"
 \end_layout
 
 \begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "def:order-p-kernel"
+
+\end_inset
+
 An order-
 \begin_inset Formula $p$
 \end_inset
@@ -598,6 +617,61 @@ where
  moment of the kernel.
 \end_layout
 
+\begin_layout Section
+Shifted balloon estimator
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:balloon"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+A shifted balloon estimator is a kernel density estimator whose bandwidth
+ depends on the point 
+\begin_inset Formula $x$
+\end_inset
+
+ at which it is evaluated, i.e.
+ 
+\begin_inset Formula 
+\begin{equation}
+\hat{f}(x)=\frac{1}{n}\sum_{i=1}^{n}\frac{1}{h(x)}K\left(\frac{X_{i}-x-h^{p}\left(x\right)\delta(x)}{h(x)}\right),\label{eq:balloon-definition}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $p$
+\end_inset
+
+ is the order of the kernel 
+\begin_inset Formula $K$
+\end_inset
+
+, and 
+\begin_inset Formula $\delta(x)$
+\end_inset
+
+ is a shift which remains bounded as 
+\begin_inset Formula $n\rightarrow\infty$
+\end_inset
+
+, i.e.
+ 
+\begin_inset Formula $\lim_{n\rightarrow\infty}\left|\delta\left(x\right)\right|<\infty$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We need to consider the bias and variance to evaluate the MSE in the limit
+ of small bandwidth.
+\end_layout
+
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
@@ -605,16 +679,16 @@ name "thm:balloon-moments"
 
 \end_inset
 
- The first two moments of a shifted balloon estimator with order-
+ The mean and variance of a shifted balloon estimator with order-
 \begin_inset Formula $p$
 \end_inset
 
  kernel are 
 \begin_inset Formula 
 \begin{align}
-\left\langle \hat{f}\left(x\right)\right\rangle  & =A_{0}\left(x\right)+A_{p}\left(x\right)+O\left(h^{p+1}\left(x\right)\right)\label{eq:balloon-mean}\\
-\text{and}\quad\left\langle \hat{f}_{h}^{2}\left(x\right)\right\rangle  & =\frac{f\left(x\right)\kappa}{nh\left(x\right)}+O\left(n^{-1}\right),\label{eq:balloon-square}\\
-\text{where}\quad A_{k}\left(x\right) & =h^{k}(x)\sum_{j=k}^{\infty}\frac{f^{(j)}(x)}{k!(j-k)!}\delta^{j-k}\left(x\right)\label{eq:balloon-first-moment-coefficient}
+\left\langle \hat{f}\left(x\right)\right\rangle  & =A_{0}\left(x\right)+A_{p}\left(x\right)+o\left(h^{p}\left(x\right)\right)\label{eq:balloon-mean}\\
+\text{and}\quad\var\hat{f}_{h}\left(x\right) & =\frac{f\left(x\right)\kappa}{nh\left(x\right)}+o\left(n^{-1}h^{-1}\left(x\right)\right),\label{eq:balloon-var}\\
+\text{where}\quad A_{k}\left(x\right) & =h^{k}\left(x\right)\sum_{j=k}^{\infty}\frac{f^{\left(j\right)}\left(x\right)}{k!\left(j-k\right)!}\left[h^{p}\left(x\right)\delta\left(x\right)\right]^{j-k}\label{eq:balloon-coefficient}
 \end{align}
 
 \end_inset
@@ -644,158 +718,61 @@ and
 \end_layout
 
 \begin_layout Standard
-We are typically interested in second-order kernels such that 
-\begin_inset Formula 
-\begin{align*}
-\left\langle \hat{f}\left(x\right)\right\rangle  & =f\left(x\right)+\delta\left(x\right)f'\left(x\right)+\frac{h^{2}\left(x\right)}{2}
-\end{align*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-See the appendix for a proof.
- Consider the behaviour of the density estimator at a point 
-\begin_inset Formula $x$
-\end_inset
-
- that is several bandwidths larger (smaller) than the lower (upper) boundary
- 
-\begin_inset Formula $a$
-\end_inset
-
- (
-\begin_inset Formula $b$
-\end_inset
-
-) such that 
-\begin_inset Formula $z(x,a)$
-\end_inset
-
- (
-\begin_inset Formula $z(x,b)$
-\end_inset
-
-) is a large negative (positive) number.
- We can approximate the quantity 
-\begin_inset Formula $m_{k}(z(a,x),z(b,x))$
-\end_inset
-
- by its limiting value 
-\begin_inset Formula $m_{k}$
-\end_inset
-
- under these conditions, and only the 
-\begin_inset Formula $k=0$
-\end_inset
-
- and 
-\begin_inset Formula $k=p$
-\end_inset
-
- terms contribute to leading order in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:balloon-mean"
-
-\end_inset
-
-.
- The intermediate terms vanish because 
-\begin_inset Formula $m_{k}=0$
-\end_inset
-
- for 
-\begin_inset Formula $0<k<p$
-\end_inset
-
- according to 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:kernel-properties"
-
-\end_inset
-
- and terms with 
-\begin_inset Formula $k>p$
-\end_inset
-
- have a higher order dependence on 
-\begin_inset Formula $h(x)$
-\end_inset
-
- according to 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:balloon-first-moment-coefficient"
-
-\end_inset
-
-.
- We can make corresponding arguments for 
-\begin_inset Formula $\kappa$
-\end_inset
-
-.
- Substituting into the expression for the mean and variance in Eqs.
+A proof is given in the appendix.
+ Substituting Eqs.
 \begin_inset space ~
 \end_inset
 
 
 \begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:balloon-mean"
+LatexCommand eqref
+reference "eq:balloon-coefficient"
 
 \end_inset
 
  and 
 \begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:balloon-square"
+LatexCommand eqref
+reference "eq:balloon-mean"
 
 \end_inset
 
- yields 
+ into Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:generalised-bias"
+
+\end_inset
+
+, the bias is 
 \begin_inset Formula 
-\begin{align*}
-\left\langle \hat{f}_{h}(x)\right\rangle  & \approx{\color{red}A_{0}}+{\color{blue}A_{p}}+\mathcal{O}\left(h^{p+1}\left(x\right)\right)\\
- & ={\color{red}f(x)+\delta(x)f'(x)}+{\color{blue}\frac{h^{p}(x)}{p!}f^{(p)}(x)}+\mathcal{O}\left(h^{p+1}\left(x\right)+\delta^{2}\left(x\right)\right)\\
-\var\hat{f}_{h}(x) & \approx\frac{\kappa f(x)}{nh(x)}+\mathcal{O}\left(n^{-1}\right).
-\end{align*}
-
-\end_inset
-
-To leading order in 
-\begin_inset Formula $h(x)$
-\end_inset
-
- and 
-\begin_inset Formula $\delta(x)$
-\end_inset
-
-, the MSE is 
-\begin_inset Formula 
-\[
-\mse_{h}(x)=\left[\delta(x)f'(x)+\frac{h^{p}(x)}{p!}f^{(p)}(x)\right]^{2}+\frac{\kappa f(x)}{nh(x)}
-\]
+\begin{equation}
+\bias\hat{f}\left(x\right)=h^{p}\left(x\right)\delta\left(x\right)f'\left(x\right)+\frac{h^{p}\left(x\right)}{p!}f^{\left(p\right)}\left(x\right)+o\left(h^{p}\left(x\right)\right),\label{eq:balloon-bias}
+\end{equation}
 
 \end_inset
 
 which is the same as the expression derived by Terrell and Scott if we let
  
-\begin_inset Formula $\delta(x)=0$
+\begin_inset Formula $\delta\left(x\right)=0$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Terrell1992"
+
 \end_inset
 
 .
  Any dependence of the bias on the first derivative of the generating distributi
 on is due to the shift between the kernel mean and the associated sample
- as Chen noted in the context of irregular gamma estimators 
+ as Chen noted in the context of density estimators using Gamma kernels
+ 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Chen2000"
@@ -803,17 +780,34 @@ key "Chen2000"
 \end_inset
 
 .
- The mean integrated square error is a global quality measure and is given
- by 
-\begin_inset Formula 
-\[
-\mise_{h}=\int_{a}^{b}dx\left[\delta(x)f'(x)+\frac{h^{p}(x)}{p!}f^{(p)}(x)\right]^{2}+\frac{\kappa}{n}\left\langle h^{-1}(x)\right\rangle .
-\]
-
+ Adding Eq.
+\begin_inset space ~
 \end_inset
 
 
-\end_layout
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:balloon-var"
+
+\end_inset
+
+ and the square of Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:balloon-bias"
+
+\end_inset
+
+ yields the MSE
+\begin_inset Formula 
+\begin{multline*}
+\mse\hat{f}\left(x\right)=\left[h^{p}\left(x\right)\delta\left(x\right)f'\left(x\right)+\frac{h^{p}\left(x\right)}{p!}f^{\left(p\right)}\left(x\right)\right]^{2}+\frac{f\left(x\right)\kappa}{nh\left(x\right)}\\
++o\left(n^{-1}h^{-1}\left(x\right)+h^{2p}\left(x\right)\right).
+\end{multline*}
 
 \end_inset
 
@@ -821,7 +815,7 @@ key "Chen2000"
 \end_layout
 
 \begin_layout Section
-Shifted sample smoothing estimators
+Shifted sample-smoothing estimators
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:smoothing"
@@ -831,14 +825,8 @@ name "sec:smoothing"
 
 \end_layout
 
-\begin_layout Standard
-In the remainder of this section, we derive the asymptotic properties of
- estimators with kernels whose mean differs from the associated sample by
- a small amount and whose bandwidth is sample-dependent.
-\end_layout
-
 \begin_layout Definition
-A shifted sample smoothing estimator is a kernel density estimator whose
+A shifted sample-smoothing estimator is a kernel density estimator whose
  bandwidth depends on the samples 
 \begin_inset Formula $X_{i}$
 \end_inset
@@ -847,50 +835,74 @@ A shifted sample smoothing estimator is a kernel density estimator whose
  
 \begin_inset Formula 
 \begin{equation}
-\hat{f}_{h}(x)=\frac{1}{n}\sum_{i=1}^{n}\frac{1}{h\left(X_{i}\right)}K\left(\frac{X_{i}+\delta\left(X_{i}\right)-x}{h\left(X_{i}\right)}\right),\label{eq:sample-point-definition}
+\hat{f}\left(x\right)=\frac{1}{n}\sum_{i=1}^{n}\frac{1}{h\left(X_{i}\right)}K\left(\frac{X_{i}-x+h^{p}\left(X_{i}\right)\delta\left(X_{i}\right)}{h\left(X_{i}\right)}\right),\label{eq:smoothing-definition}
 \end{equation}
 
 \end_inset
 
 where 
+\begin_inset Formula $p$
+\end_inset
+
+ is the order of the kernel 
+\begin_inset Formula $K$
+\end_inset
+
+, and 
 \begin_inset Formula $\delta(X_{i})$
 \end_inset
 
- is a shift which vanishes in the limit 
-\begin_inset Formula $h(X_{i})\rightarrow0$
+ is a shift which remains bounded as 
+\begin_inset Formula $n\rightarrow\infty$
+\end_inset
+
+, i.e.
+ 
+\begin_inset Formula $\lim_{n\rightarrow\infty}\left|\delta\left(x\right)\right|<\infty$
 \end_inset
 
 .
- 
 \end_layout
 
 \begin_layout Standard
 As in the previous section, we evaluate the mean and the variance assuming
  the bandwidth is small.
- See the appendix for a proof.
+ See the appendix for a proof of the following theorem.
 \end_layout
 
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
-name "thm:sample-smoothing-moments"
+name "thm:smoothing-moments"
 
 \end_inset
 
- Provided that 
-\begin_inset Formula $z(y,x)=\frac{y+\delta(y)-x}{h(y)}$
+ If 
+\begin_inset Formula 
+\[
+z=\frac{y-x+h^{p}\left(y\right)\delta\left(y\right)}{h\left(y\right)}
+\]
+
 \end_inset
 
- is a monotonically increasing function of 
+is a monotonic function of 
 \begin_inset Formula $y$
 \end_inset
 
-, the mean and variance of a shifted sample smoothing estimator are 
+ for all 
+\begin_inset Formula $x$
+\end_inset
+
+, the mean and variance of a shifted sample-smoothing estimator with order-
+\begin_inset Formula $p$
+\end_inset
+
+ kernel are 
 \begin_inset Formula 
 \begin{align*}
-\left\langle \hat{f}_{h}(x)\right\rangle  & =\sum_{k=0}^{\infty}B_{k}m_{k}(z(a,x),z(b,x))\\
-\text{and}\quad\var\hat{f}_{h}(x) & =\frac{f(x)\kappa(z(a,x),z(b,x))}{nh(x)}+\mathcal{O}\left(n^{-1}h^{0}(x)\right),\\
-\text{where}\quad B_{k} & =\sum_{j=0}^{\infty}\frac{1}{k!(j-k)!}\frac{\partial^{j}}{\partial x^{j}}\left(f(x)h^{k}(x)(-\delta(x))^{j-k}\right).
+\left\langle \hat{f}\left(x\right)\right\rangle  & =B_{0}\left(x\right)+B_{p}\left(x\right)+o\left(h^{p}\left(x\right)\right)\\
+\text{and}\quad\var\hat{f}\left(x\right) & =\frac{f(x)\kappa}{nh(x)}+o\left(n^{-1}h^{-1}\left(x\right)\right),\\
+\text{where}\quad B_{k} & =\sum_{j=k}^{\infty}\frac{1}{k!\left(j-k\right)!}\frac{\partial^{j}}{\partial x^{j}}\left(f\left(x\right)h^{k+p\left(j-k\right)}\left(x\right)\left(-\delta\left(x\right)\right)^{j-k}\right).
 \end{align*}
 
 \end_inset
@@ -899,50 +911,58 @@ name "thm:sample-smoothing-moments"
 \end_layout
 
 \begin_layout Standard
-Using the same arguments as in the previous section, the first two moments
- are
+Using the same argument as in the previous section and dropping higher-order
+ terms in 
+\begin_inset Formula $h\left(x\right)$
+\end_inset
+
+, we have
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align}
-\left\langle \hat{f}_{h}(x)\right\rangle  & \approx{\color{red}B_{0}}+{\color{blue}B_{p}}+\mathcal{O}\left(h^{p+1}(x)\right)\nonumber \\
- & ={\color{red}f(x)-\frac{\partial}{\partial x}\left(\delta\left(x\right)f'\left(x\right)\right)}+{\color{blue}\frac{1}{p!}\frac{\partial^{p}}{\partial x^{p}}\left(h^{p}\left(x\right)f\left(x\right)\right)}+\mathcal{O}\left(h^{p+1}(x)+\delta^{2}(x)\right)\label{eq:regular-first-moment}\\
-\left\langle \hat{f}_{h}^{2}(x)\right\rangle  & \approx\frac{\kappa f(x)}{h(x)}+\mathcal{O}\left(h^{0}(x)\right).\nonumber 
-\end{align}
+\begin{align*}
+\bias\hat{f}\left(x\right) & =-\frac{\partial}{\partial x}\left(f\left(x\right)h^{p}\left(x\right)\delta\left(x\right)\right)+\frac{1}{p!}\frac{\partial^{p}}{\partial x^{p}}\left(h^{p}\left(x\right)f\left(x\right)\right)+o\left(h^{p}\left(x\right)\right).
+\end{align*}
 
 \end_inset
 
-The MSE and MISE are thus 
-\begin_inset Formula 
-\begin{align}
-\mse_{h}(x) & =\left[-\frac{\partial}{\partial x}\left(\delta(x)f(x)\right)+\frac{1}{p!}\frac{\partial^{p}}{\partial x^{p}}\left(h^{p}(x)f(x)\right)\right]^{2}+\frac{\kappa f(x)}{nh(x)}\label{eq:regular-mse}\\
-\mise_{h} & =\int_{a}^{b}dx\left[-\frac{\partial}{\partial x}\left(\delta(x)f(x)\right)+\frac{1}{p!}\frac{\partial^{p}}{\partial x^{p}}\left(h^{p}(x)f(x)\right)\right]^{2}+\frac{\kappa}{n}\left\langle h^{-1}(x)\right\rangle .\nonumber 
-\end{align}
-
-\end_inset
-
-to leading order in 
-\begin_inset Formula $h(x)$
-\end_inset
-
- and 
-\begin_inset Formula $\delta(x)$
-\end_inset
-
- which agrees with the expression derived by Terrell and Scott if we let
- 
-\begin_inset Formula $\delta(x)=0$
+The expressions agree with Terrell and Scott if we let 
+\begin_inset Formula $\delta\left(x\right)=0$
 \end_inset
 
  
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand cite
 key "Terrell1992"
 
 \end_inset
 
 .
+ Jones et al.
+ provide an alternative derivation for second-order kernels, i.e.
+ 
+\begin_inset Formula $p=2$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Jones1994"
+
+\end_inset
+
+.
+ The MSE is thus 
+\begin_inset Formula 
+\begin{multline*}
+\mse\hat{f}(x)=\left[-\frac{\partial}{\partial x}\left(f\left(x\right)h^{p}\left(x\right)\delta\left(x\right)\right)+\frac{1}{p!}\frac{\partial^{p}}{\partial x^{p}}\left(h^{p}\left(x\right)f\left(x\right)\right)\right]^{2}+\frac{\kappa f\left(x\right)}{nh\left(x\right)}\\
++o\left(n^{-1}h^{-1}\left(x\right)+h^{2p}\left(x\right)\right).
+\end{multline*}
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -950,6 +970,391 @@ Application
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:application"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Recall the definition of the general weight function estimator in Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:generalised-estimator"
+
+\end_inset
+
+ which we repeat here for ease of reference: 
+\begin_inset Formula 
+\begin{equation}
+\hat{f}\left(x\right)=\frac{1}{n}\sum_{i=1}^{n}W\left(X_{i},x\right).\label{eq:generalised-estimator-2}
+\end{equation}
+
+\end_inset
+
+There are two fundamentally different choices for the weight function.
+\end_layout
+
+\begin_layout Definition
+A weight function 
+\begin_inset Formula $W\left(y,x\right)$
+\end_inset
+
+ is called 
+\emph on
+proper
+\emph default
+ if 
+\begin_inset Formula 
+\[
+\int dy\,W\left(y,x\right)=1.
+\]
+
+\end_inset
+
+It is called 
+\emph on
+improper
+\emph default
+ if
+\begin_inset Formula 
+\[
+\int dx\,W\left(y,x\right)=1.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Estimators with proper weight functions are guaranteed to be densities themselve
+s because each term in Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:generalised-estimator-2"
+
+\end_inset
+
+ integrates to unity.
+ Sample-smoothing estimators belong to this class.
+ Estimators with improper weight functions, such as balloon estimators,
+ do not in general yield 
+\emph on
+bona fide
+\emph default
+ densities.
+ If the weight function is symmetric with respect to exchange of its argument,
+ the distinction becomes immaterial.
+ Standard kernels with fixed bandwidth as defined in Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:standard-kde"
+
+\end_inset
+
+ are examples of symmetric weight functions if the kernel is an even function
+ of its argument.
+\end_layout
+
+\begin_layout Subsection
+Density estimation using improper weight functions
+\end_layout
+
+\begin_layout Standard
+Improper weight functions have recently become popular for estimating densities
+ with (semi-)bounded support to avoid boundary bias.
+ See Sec.
+ 2.11 in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Wand1995"
+
+\end_inset
+
+ for a detailed discussion of boundary bias.
+ In particular, Brown and Chen used beta-distribution kernels for non-parametric
+ regression on a finite interval 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Brown1999"
+
+\end_inset
+
+.
+ Chen proposed the use of gamma-distribution kernels to estimate densities
+ of positive random variables 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chen2000"
+
+\end_inset
+
+ which spurred further research into positive density estimation using Birnbaum-
+Saunders and log-normal kernels 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Jin2003"
+
+\end_inset
+
+ as well as inverse Gaussian and reciprocal inverse Gaussian kernels 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Scaillet2004"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In the following, we show that all improper weight functions for positive
+ density estimation are asymptotically equivalent to a shifted balloon estimator
+ and derive their asymptotic bias and variance.
+ We consider the gamma-kernel density estimator proposed by Chen 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chen2000"
+
+\end_inset
+
+ in detail and report the results of the other estimators in Tbl.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:improper"
+
+\end_inset
+
+ in the interest of brevity.
+\end_layout
+
+\begin_layout Standard
+After reparametrisation, Chen's estimator is given by
+\begin_inset Formula 
+\[
+\hat{f}\left(x\right)=\sum_{i=1}^{n}\mathrm{Gamma}\left(X_{i};1+\frac{x}{\sigma^{2}},\sigma^{2}\right),
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ is the bandwidth, and 
+\begin_inset Formula $\mathrm{Gamma}\left(t;k,\theta\right)=\frac{\theta^{-k}}{\Gamma\left(k\right)}x^{k-1}\exp\left(-\frac{x}{\theta}\right)$
+\end_inset
+
+ denotes the probability density function of a Gamma random variable with
+ mean 
+\begin_inset Formula $k\theta$
+\end_inset
+
+ and variance 
+\begin_inset Formula $k\theta^{2}$
+\end_inset
+
+.
+ If the bandwidth 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ is small, the shape parameter of the Gamma distribution is large and it
+ can be approximated by a Gaussian with the same mean 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Johnson1994"
+
+\end_inset
+
+, i.e.
+\begin_inset Formula 
+\[
+\mathrm{Gamma}\left(X_{i};1+\frac{x}{\sigma^{2}},\sigma^{2}\right)\rightarrow\mathcal{N}\left(X_{i};x+\sigma^{2},\sigma^{2}\left(x+\sigma^{2}\right)\right).
+\]
+
+\end_inset
+
+The kernel above is of the form of a shifted balloon estimator with Gaussian
+ kernel and 
+\begin_inset Formula 
+\begin{align*}
+h\left(x\right) & =\sigma\sqrt{x+\sigma^{2}}\\
+h^{2}\left(x\right)\delta\left(x\right) & =\sigma^{2}.
+\end{align*}
+
+\end_inset
+
+Note that the normal approximation is only appropriate if the bandwidth
+ is sufficiently small that we can ignore boundary effects at 
+\begin_inset Formula $x=0$
+\end_inset
+
+.
+ Using Eqs.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:balloon-bias"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:balloon-var"
+
+\end_inset
+
+ the bias and variance are
+\begin_inset Formula 
+\begin{align*}
+\bias\hat{f}\left(x\right) & =\sigma^{2}f'\left(x\right)+\frac{\sigma^{2}\left(x+\sigma^{2}\right)}{2}f''\left(x\right)+o\left(\sigma^{2}\right)\\
+ & =\sigma^{2}\left(f'\left(x\right)+\frac{x}{2}f''\left(x\right)\right)+o\left(\sigma^{2}\right)\\
+\mathrm{and}\quad\var\hat{f}\left(x\right) & =\frac{f\left(x\right)\kappa}{n\sigma\sqrt{x+\sigma^{2}}}+o\left(n^{-1}\sigma^{-1}\right)\\
+ & =\frac{f\left(x\right)\kappa}{n\sigma\sqrt{x}}+o\left(n^{-1}\sigma^{-1}\right),
+\end{align*}
+
+\end_inset
+
+which agree with the expressions derived by Chen.
+ The MSE is
+\begin_inset Formula 
+\begin{multline*}
+\mse\hat{f}\left(x\right)=\sigma^{4}\left(f'\left(x\right)+\frac{x}{2}f''\left(x\right)\right)^{2}+\frac{f\left(x\right)\kappa}{n\sigma\sqrt{x}}\\
++o\left(\sigma^{4}+n^{-1}\sigma^{-1}\right).
+\end{multline*}
+
+\end_inset
+
+Integration yields the MISE which can be optimised by, for example, leave-one-ou
+t cross-validation (see Sec.
+ 3.4.3 of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Silverman1986"
+
+\end_inset
+
+ for details
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Could include LOO cross-validation in an extended draft for the thesis
+\end_layout
+
+\end_inset
+
+).
+ 
+\end_layout
+
+\begin_layout Standard
+Assuming that 
+\begin_inset Formula $f\left(x\right)$
+\end_inset
+
+ approximately follows a functional form enables us to obtain a plugin method
+ for selecting the bandwidth.
+ The parametric form of the reference distribution is largely a free choice;
+ we assume that 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ is approximately log-normal with logarithmic mean 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and logarithmic variance 
+\begin_inset Formula $\Sigma^{2}$
+\end_inset
+
+ for convenience.
+ Substituting yields 
+\begin_inset Formula 
+\[
+\mise_{\sigma}=\sigma^{4}\frac{\exp\left(-3\mu+\frac{9\Sigma^{2}}{4}\right)\left(12+20\Sigma^{2}+9\Sigma^{4}\right)}{128\sqrt{\pi}\Sigma^{4}}+\frac{\exp\left(-\frac{\mu}{2}+\frac{\Sigma^{2}}{8}\right)}{2n\sigma\sqrt{\pi}}
+\]
+
+\end_inset
+
+and setting the derivative of the MISE with respect to 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ to zero yields the optimal scale parameter 
+\begin_inset Formula 
+\[
+\sigma^{*}=\frac{2^{4/5}\Sigma\exp\left(\frac{\mu}{2}-\frac{17\Sigma^{2}}{40}\right)}{\left(12+20\Sigma^{2}+9\Sigma^{4}\right)^{1/5}}n^{-1/5}.
+\]
+
+\end_inset
+
+The expression allows us to obtain a bandwidth by estimating 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and 
+\begin_inset Formula $\Sigma$
+\end_inset
+
+ from the data without the need for computationally-expensive cross-validation.
+ Plugin bandwidth estimators are particularly useful for preliminary data
+ exploration.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:improper"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
@@ -973,13 +1378,19 @@ Appendix
 \end_layout
 
 \begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:integral-balloon"
+
+\end_inset
+
 The integral
 \end_layout
 
 \begin_layout Lemma
 \begin_inset Formula 
 \[
-L=\int\frac{dy}{h\left(x\right)}\phi\left(\frac{y-\delta\left(x\right)-x}{h\left(x\right)}\right)\theta\left(y\right)
+L=\int\frac{dy}{h\left(x\right)}\phi\left(\frac{y-x-h^{p}\left(x\right)\delta\left(x\right)}{h\left(x\right)}\right)\theta\left(y\right)
 \]
 
 \end_inset
@@ -988,7 +1399,7 @@ is given by
 \begin_inset Formula 
 \begin{align*}
 L & =\sum_{k=0}^{\infty}A_{k}\left(x\right)\int dz\,\phi\left(z\right)z^{k},\\
-\text{where}\quad A_{k}\left(x\right) & =\sum_{j=k}^{\infty}\frac{1}{k!\left(j-k\right)!}h^{k}\left(x\right)\delta^{j-k}\left(x\right)\frac{d^{j}\theta\left(x\right)}{dx^{j}}.
+\text{where}\quad A_{k}\left(x\right) & =h^{k}\left(x\right)\sum_{j=k}^{\infty}\frac{\theta^{\left(j\right)}\left(x\right)}{k!\left(j-k\right)!}\left[h^{p}\left(x\right)\delta\left(x\right)\right]^{j-k}.
 \end{align*}
 
 \end_inset
@@ -1000,16 +1411,20 @@ L & =\sum_{k=0}^{\infty}A_{k}\left(x\right)\int dz\,\phi\left(z\right)z^{k},\\
 We make the change of variables 
 \begin_inset Formula 
 \[
-z=\frac{y-\delta\left(x\right)-x}{h\left(x\right)}
+z=\frac{y-x-h^{p}\left(x\right)\delta\left(x\right)}{h\left(x\right)}
 \]
 
 \end_inset
 
-such that, holding x constant,
+such that, holding 
+\begin_inset Formula $x$
+\end_inset
+
+ constant,
 \begin_inset Formula 
 \begin{align*}
 dz & =\frac{dy}{h\left(x\right)}\\
-\text{and}\quad L & =\int dz\,\phi\left(z\right)\theta\left(x+\delta\left(x\right)+zh\left(x\right)\right).
+\text{and}\quad L & =\int dz\,\phi\left(z\right)\theta\left(x+h^{p}\left(x\right)\delta\left(x\right)+zh\left(x\right)\right).
 \end{align*}
 
 \end_inset
@@ -1025,7 +1440,7 @@ Expanding
  yields
 \begin_inset Formula 
 \[
-L=\int dz\,\phi\left(z\right)\sum_{j=0}^{\infty}\frac{1}{j!}\left(\delta\left(x\right)+zh\left(x\right)\right)^{j}\frac{d^{j}\theta\left(x\right)}{dx^{j}}.
+L=\int dz\,\phi\left(z\right)\sum_{j=0}^{\infty}\frac{\theta^{\left(j\right)}\left(x\right)}{j!}\left(h^{p}\left(x\right)\delta\left(x\right)+zh\left(x\right)\right)^{j}.
 \]
 
 \end_inset
@@ -1033,9 +1448,9 @@ L=\int dz\,\phi\left(z\right)\sum_{j=0}^{\infty}\frac{1}{j!}\left(\delta\left(x\
 Using the binomial theorem and exchanging the order of summation gives
 \begin_inset Formula 
 \begin{align*}
-L & =\int dz\,\phi\left(z\right)\sum_{j=0}^{\infty}\frac{1}{j!}\sum_{k=0}^{j}\binom{j}{k}z^{k}h^{k}\left(x\right)\delta^{j-k}\left(x\right)\frac{d^{j}\theta\left(x\right)}{dx^{j}}\\
+L & =\int dz\,\phi\left(z\right)\sum_{j=0}^{\infty}\frac{\theta^{\left(j\right)}\left(x\right)}{j!}\sum_{k=0}^{j}\binom{j}{k}z^{k}h^{k+p\left(j-k\right)}\left(x\right)\delta^{j-k}\left(x\right)\\
  & =\sum_{k=0}^{\infty}A_{k}\left(x\right)\int dz\,\phi\left(z\right)z^{k},\\
-\text{where}\quad A_{k}\left(x\right) & =\sum_{j=k}^{\infty}\frac{1}{k!\left(j-k\right)!}h^{k}\left(x\right)\delta^{j-k}\left(x\right)\frac{d^{j}\theta\left(x\right)}{dx^{j}}.
+\text{where}\quad A_{k}\left(x\right) & =h^{k}\left(x\right)\sum_{j=k}^{\infty}\frac{\theta^{\left(j\right)}\left(x\right)}{k!\left(j-k\right)!}\left[h^{p}\left(x\right)\delta\left(x\right)\right]^{j-k}.
 \end{align*}
 
 \end_inset
@@ -1043,11 +1458,218 @@ L & =\int dz\,\phi\left(z\right)\sum_{j=0}^{\infty}\frac{1}{j!}\sum_{k=0}^{j}\bi
 
 \end_layout
 
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Proof
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Proof of Thm.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:balloon-moments"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+From Eqs.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:generalised-mean"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:balloon-definition"
+
+\end_inset
+
+, the first moment of a shifted balloon estimator is
+\begin_inset Formula 
+\[
+\left\langle \hat{f}\left(x\right)\right\rangle =\int\frac{dy}{h\left(x\right)}\,K\left(\frac{y-x-h^{p}\left(x\right)\delta\left(x\right)}{h\left(x\right)}\right)f\left(y\right).
+\]
+
+\end_inset
+
+Let 
+\begin_inset Formula $\phi\left(z\right)=K\left(z\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $\theta\left(y\right)=f\left(y\right)$
+\end_inset
+
+.
+ Then by Lem.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:integral-balloon"
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+\left\langle \hat{f}\left(x\right)\right\rangle  & =\sum_{k=0}^{\infty}A_{k}\left(x\right)\int dz\,K\left(z\right)z^{k},\label{eq:balloon-mean-proof}\\
+\mathrm{where}\quad A_{k}\left(x\right) & =h^{k}\left(x\right)\sum_{j=k}^{\infty}\frac{f^{\left(j\right)}\left(x\right)}{k!\left(j-k\right)!}\left[h^{p}\left(x\right)\delta\left(x\right)\right]^{j-k}.\nonumber 
+\end{align}
+
+\end_inset
+
+Recall that by Def.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "def:order-p-kernel"
+
+\end_inset
+
+, the integral in Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:balloon-mean-proof"
+
+\end_inset
+
+ vanishes for 
+\begin_inset Formula $0<k<p$
+\end_inset
+
+ and is equal to unity for 
+\begin_inset Formula $k=0,\,p$
+\end_inset
+
+ such that
+\begin_inset Formula 
+\[
+\left\langle \hat{f}\left(x\right)\right\rangle =A_{0}\left(x\right)+A_{p}\left(x\right)+o\left(h^{p}\left(x\right)\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+According to Eqs.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:generalised-variance"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:balloon-definition"
+
+\end_inset
+
+, the variance of a shifted balloon estimator is
+\begin_inset Formula 
+\begin{equation}
+\var\hat{f}\left(x\right)=\frac{1}{n}\int\frac{dy}{h^{2}\left(x\right)}\,K^{2}\left(\frac{y-x-h^{p}\left(x\right)\delta\left(x\right)}{h\left(x\right)}\right)f\left(y\right)-\frac{\left\langle \hat{f}\left(x\right)\right\rangle ^{2}}{n}.\label{eq:balloon-var-proof}
+\end{equation}
+
+\end_inset
+
+We use Lem.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:integral-balloon"
+
+\end_inset
+
+ with 
+\begin_inset Formula $\phi\left(z\right)=K^{2}\left(z\right)$
+\end_inset
+
+and 
+\begin_inset Formula $\theta\left(y\right)=f\left(y\right)/h\left(x\right)$
+\end_inset
+
+ such that the variance becomes
+\begin_inset Formula 
+\[
+\var\hat{f}\left(x\right)=\frac{f\left(x\right)\kappa}{nh\left(x\right)}+o\left(n^{-1}h^{-1}\left(x\right)\right).
+\]
+
+\end_inset
+
+The second term in Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:balloon-var-proof"
+
+\end_inset
+
+ is absorbed by 
+\begin_inset Formula $o\left(n^{-1}h^{-1}\left(x\right)\right)$
+\end_inset
+
+ because of its zero-order dependence on 
+\begin_inset Formula $h$
+\end_inset
+
+
+\begin_inset Formula $\left(x\right)$
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:integral-smoothing"
+
+\end_inset
+
 The integral 
 \begin_inset Formula 
 \[
-L=\int_{a}^{b}\frac{dy}{h\left(y\right)}\phi\left(\frac{y+\delta\left(y\right)-x}{h\left(y\right)}\right)\theta\left(y\right)
+L=\int_{a}^{b}\frac{dy}{h\left(y\right)}\phi\left(\frac{y-x+h^{p}\left(y\right)\delta\left(y\right)}{h\left(y\right)}\right)\theta\left(y\right)
 \]
 
 \end_inset
@@ -1056,7 +1678,7 @@ is given by
 \begin_inset Formula 
 \begin{align*}
 L & =\sum_{k=0}^{\infty}B_{k}\left(x\right)\int dz\,\phi\left(z\right)z^{k},\\
-\text{where}\quad B_{k}\left(x\right) & =\sum_{j=k}^{\infty}\frac{1}{\left(j-k\right)!k!}\frac{\partial^{j}}{\partial x^{j}}\left(\theta\left(x\right)h^{k}\left(x\right)\left(-\delta\left(x\right)\right)^{j-k}\right)
+\text{where}\quad B_{k}\left(x\right) & =\sum_{j=k}^{\infty}\frac{1}{k!\left(j-k\right)!}\frac{\partial^{j}}{\partial x^{j}}\left(\theta\left(x\right)h^{k+p\left(j-k\right)}\left(x\right)\left(-\delta\left(x\right)\right)^{j-k}\right)
 \end{align*}
 
 \end_inset
@@ -1064,13 +1686,17 @@ L & =\sum_{k=0}^{\infty}B_{k}\left(x\right)\int dz\,\phi\left(z\right)z^{k},\\
 if 
 \begin_inset Formula 
 \begin{equation}
-z\left(y,x\right)=\frac{y+\delta\left(y\right)-x}{h\left(y\right)}\label{eq:smoothing-change-of-variables}
+z\left(y,x\right)=\frac{y-x+h^{p}\left(y\right)\delta\left(y\right)}{h\left(y\right)}\label{eq:smoothing-change-of-variables}
 \end{equation}
 
 \end_inset
 
 is a monotonic function of 
 \begin_inset Formula $y$
+\end_inset
+
+ for all 
+\begin_inset Formula $x$
 \end_inset
 
  such that the inverse 
@@ -1095,9 +1721,9 @@ reference "eq:smoothing-change-of-variables"
  constant, 
 \begin_inset Formula 
 \begin{align}
-dz & =\left(\frac{1+\delta'\left(y\right)}{h\left(y\right)}-\frac{y+\delta\left(y\right)-x}{h\left(y\right)}\frac{h'\left(y\right)}{h\left(y\right)}\right)dy\nonumber \\
- & =\frac{dy}{h\left(y\right)}\left(1+\delta'\left(y\right)-zh'\left(y\right)\right)\nonumber \\
-\text{and}\quad L & =\int dz\,\phi\left(z\right)\frac{\theta\left(y\left(z,x\right)\right)}{1+\delta'\left(y\left(z,x\right)\right)-zh'\left(y\left(z,x\right)\right)}.\label{eq:smoothing-transformed}
+dz & =\left(\frac{\frac{d}{dy}\left(y-x+h^{p}\left(y\right)\delta\left(y\right)\right)}{h\left(y\right)}-\frac{y-x+h^{p}\left(y\right)\delta\left(y\right)}{h\left(y\right)}\frac{h'\left(y\right)}{h\left(y\right)}\right)dy\nonumber \\
+ & =\frac{dy}{h\left(y\right)}\frac{d}{dy}\left(y-x+h^{p}\left(y\right)\delta\left(y\right)-zh\left(y\right)\right)\nonumber \\
+\text{and}\quad L & =\int dz\,\phi\left(z\right)\frac{\theta\left(y\left(z,x\right)\right)}{\left[\frac{d}{dy}\left(y-x+h^{p}\left(y\right)\delta\left(y\right)-zh\left(y\right)\right)\right]_{y=y\left(z,x\right)}}.\label{eq:smoothing-transformed}
 \end{align}
 
 \end_inset
@@ -1120,7 +1746,7 @@ reference "eq:smoothing-transformed"
  as the contour integral 
 \begin_inset Formula 
 \begin{equation}
-\ell=\frac{1}{2\pi i}\oint_{\gamma}d\tau\,\frac{\theta\left(\tau\right)}{\tau-x+\delta\left(\tau\right)-zh\left(\tau\right)},\label{eq:contour-integral}
+\ell=\frac{1}{2\pi i}\oint_{\gamma}d\tau\,\frac{\theta\left(\tau\right)}{\tau-x+h^{p}\left(\tau\right)\delta\left(\tau\right)-zh\left(\tau\right)},\label{eq:contour-integral}
 \end{equation}
 
 \end_inset
@@ -1134,16 +1760,20 @@ where
 \begin_inset Formula $\gamma$
 \end_inset
 
- encloses the pole defined by 
+ encloses the points defined by 
 \begin_inset Formula $\tau=y\left(z,x\right)$
 \end_inset
 
- and the point 
+ and 
 \begin_inset Formula $\tau=x$
 \end_inset
 
 .
- The simple pole has residue (see Theorem 8.15 in 
+ The simple pole at 
+\begin_inset Formula $\tau=y\left(z,x\right)$
+\end_inset
+
+ has residue (see Theorem 8.15 in 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Howie2008"
@@ -1153,7 +1783,7 @@ key "Howie2008"
 ) 
 \begin_inset Formula 
 \[
-\frac{\theta\left(y\left(z,x\right)\right)}{1+\delta'\left(y\left(z,x\right)\right)-zh'\left(y\left(z,x\right)\right)}
+\frac{\theta\left(y\left(z,x\right)\right)}{\left[\frac{d}{dy}\left(y-x+h^{p}\left(y\right)\delta\left(y\right)-zh\left(y\right)\right)\right]_{y=y\left(z,x\right)}}
 \]
 
 \end_inset
@@ -1187,8 +1817,8 @@ Expanding
  yields
 \begin_inset Formula 
 \begin{align*}
-\ell & =\frac{1}{2\pi i}\oint_{\gamma}d\tau\,\frac{\theta\left(y\right)}{\tau-x}\sum_{j=0}^{\infty}\left(\frac{zh\left(\tau\right)-\delta\left(\tau\right)}{\tau-x}\right)^{j}\\
- & =\frac{1}{2\pi i}\oint_{\gamma}d\tau\,\theta\left(y\right)\sum_{j=0}^{\infty}\sum_{k=0}^{j}\binom{j}{k}\frac{z^{k}h^{k}\left(\tau\right)\left(-\delta\left(\tau\right)\right)^{j-k}}{\left(\tau-x\right)^{j+1}}.
+\ell & =\frac{1}{2\pi i}\oint_{\gamma}d\tau\,\frac{\theta\left(y\right)}{\tau-x}\sum_{j=0}^{\infty}\left(\frac{zh\left(\tau\right)-h^{p}\left(x\right)\delta\left(\tau\right)}{\tau-x}\right)^{j}\\
+ & =\frac{1}{2\pi i}\oint_{\gamma}d\tau\,\theta\left(y\right)\sum_{j=0}^{\infty}\sum_{k=0}^{j}\binom{j}{k}\frac{z^{k}h^{k+p\left(j-k\right)}\left(\tau\right)\left(-\delta\left(\tau\right)\right)^{j-k}}{\left(\tau-x\right)^{j+1}}.
 \end{align*}
 
 \end_inset
@@ -1216,7 +1846,7 @@ key "Howie2008"
 )
 \begin_inset Formula 
 \[
-R_{j}=\sum_{k=0}^{j}\frac{z^{k}}{k!\left(j-k\right)!}\frac{\partial^{j}}{\partial x^{j}}\left(\theta\left(x\right)h^{k}\left(x\right)\left(-\delta\left(x\right)\right)^{j-k}\right)
+R_{j}=\sum_{k=0}^{j}\frac{z^{k}}{k!\left(j-k\right)!}\frac{\partial^{j}}{\partial x^{j}}\left(\theta\left(x\right)h^{k+p\left(j-k\right)}\left(x\right)\left(-\delta\left(x\right)\right)^{j-k}\right)
 \]
 
 \end_inset
@@ -1236,14 +1866,215 @@ reference "eq:smoothing-transformed"
  and exchanging the order of summation yields
 \begin_inset Formula 
 \begin{align*}
-L & =\int dz\,\phi\left(z\right)\sum_{j=0}^{\infty}\sum_{k=0}^{j}\frac{z^{k}}{k!\left(j-k\right)!}\frac{\partial^{j}}{\partial x^{j}}\left(\theta\left(x\right)h^{k}\left(x\right)\left(-\delta\left(x\right)\right)^{j-k}\right)\\
+L & =\int dz\,\phi\left(z\right)\sum_{j=0}^{\infty}\sum_{k=0}^{j}\frac{z^{k}}{k!\left(j-k\right)!}\frac{\partial^{j}}{\partial x^{j}}\left(\theta\left(x\right)h^{k+p\left(j-k\right)}\left(x\right)\left(-\delta\left(x\right)\right)^{j-k}\right)\\
  & =\sum_{k=0}^{\infty}B_{k}\left(x\right)\int dz\,\phi\left(z\right)z^{k}\\
-\text{where}\quad B_{k}\left(x\right) & =\sum_{j=k}^{\infty}\frac{1}{k!\left(j-k\right)!}\frac{\partial^{j}}{\partial x^{j}}\left(\theta\left(x\right)h^{k}\left(x\right)\left(-\delta\left(x\right)\right)^{j-k}\right).
+\text{where}\quad B_{k}\left(x\right) & =\sum_{j=k}^{\infty}\frac{1}{k!\left(j-k\right)!}\frac{\partial^{j}}{\partial x^{j}}\left(\theta\left(x\right)h^{k+p\left(j-k\right)}\left(x\right)\left(-\delta\left(x\right)\right)^{j-k}\right).
 \end{align*}
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Proof
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Proof of Thm.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:smoothing-moments"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+From Eqs.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:generalised-mean"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:smoothing-definition"
+
+\end_inset
+
+, the first moment of a shifted sample-smoothing estimator is
+\begin_inset Formula 
+\[
+\left\langle \hat{f}\left(x\right)\right\rangle =\int\frac{dy}{h\left(y\right)}\,K\left(\frac{y-x+h^{p}\left(y\right)\delta\left(y\right)}{h\left(y\right)}\right)f\left(y\right).
+\]
+
+\end_inset
+
+Let 
+\begin_inset Formula $\phi\left(z\right)=K\left(z\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $\theta\left(y\right)=f\left(y\right)$
+\end_inset
+
+.
+ Then by Lem.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:integral-smoothing"
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+\left\langle \hat{f}\left(x\right)\right\rangle  & =\sum_{k=0}^{\infty}B_{k}\left(x\right)\int dz\,K\left(z\right)z^{k},\label{eq:smoothing-mean-proof}\\
+\mathrm{where}\quad B_{k}\left(x\right) & =\sum_{j=k}^{\infty}\frac{1}{k!\left(j-k\right)!}\frac{\partial^{j}}{\partial x^{j}}\left(f\left(x\right)h^{k+p\left(j-k\right)}\left(x\right)\left(-\delta\left(x\right)\right)^{j-k}\right).\nonumber 
+\end{align}
+
+\end_inset
+
+Recall that by Def.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "def:order-p-kernel"
+
+\end_inset
+
+, the integral in Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:smoothing-mean-proof"
+
+\end_inset
+
+ vanishes for 
+\begin_inset Formula $0<k<p$
+\end_inset
+
+ and is equal to unity for 
+\begin_inset Formula $k=0,\,p$
+\end_inset
+
+ such that
+\begin_inset Formula 
+\[
+\left\langle \hat{f}\left(x\right)\right\rangle =B_{0}\left(x\right)+B_{p}\left(x\right)+o\left(h^{p}\left(x\right)\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+According to Eqs.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:generalised-variance"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:smoothing-definition"
+
+\end_inset
+
+, the variance of a shifted sample-smoothing estimator is
+\begin_inset Formula 
+\begin{equation}
+\var\hat{f}\left(x\right)=\frac{1}{n}\int\frac{dy}{h^{2}\left(y\right)}\,K^{2}\left(\frac{y-x+h^{p}\left(y\right)\delta\left(y\right)}{h\left(y\right)}\right)f\left(y\right)-\frac{\left\langle \hat{f}\left(x\right)\right\rangle ^{2}}{n}.\label{eq:smoothing-var-proof}
+\end{equation}
+
+\end_inset
+
+We use Lem.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:integral-balloon"
+
+\end_inset
+
+ with 
+\begin_inset Formula $\phi\left(z\right)=K^{2}\left(z\right)$
+\end_inset
+
+and 
+\begin_inset Formula $\theta\left(y\right)=f\left(y\right)/h\left(y\right)$
+\end_inset
+
+ such that the variance becomes
+\begin_inset Formula 
+\[
+\var\hat{f}\left(x\right)=\frac{f\left(x\right)\kappa}{nh\left(x\right)}+o\left(n^{-1}h^{-1}\left(x\right)\right).
+\]
+
+\end_inset
+
+The second term in Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:smoothing-var-proof"
+
+\end_inset
+
+ is absorbed by 
+\begin_inset Formula $o\left(n^{-1}h^{-1}\left(x\right)\right)$
+\end_inset
+
+ because of its zero-order dependence on 
+\begin_inset Formula $h$
+\end_inset
+
+
+\begin_inset Formula $\left(x\right)$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
