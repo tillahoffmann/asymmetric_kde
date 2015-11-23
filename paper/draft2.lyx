@@ -4,7 +4,8 @@
 \begin_header
 \textclass amsart
 \begin_preamble
-
+\usepackage[backend=biber,style=numeric,sorting=none,firstinits=true]{biblatex}
+\addbibresource{/Users/tillhoffmann/google_drive/papers/library.bib}
 \end_preamble
 \use_default_options false
 \begin_removed_modules
@@ -16,7 +17,7 @@ figs-within-sections
 theorems-ams-bytype
 \end_modules
 \maintain_unincluded_children false
-\language english
+\language british
 \language_package none
 \inputencoding auto
 \fontencoding default
@@ -33,7 +34,7 @@ theorems-ams-bytype
 \graphics default
 \default_output_format default
 \output_sync 0
-\bibtex_command default
+\bibtex_command biber
 \index_command default
 \paperfontsize default
 \spacing single
@@ -134,7 +135,7 @@ theorems-ams-bytype
 \end_layout
 
 \begin_layout Title
-Asymmetric kernel density estimation
+Unified treatment of the asymptotics of asymmetric kernel density estimators
 \end_layout
 
 \begin_layout Author
@@ -146,16 +147,19 @@ Nick Jones
 \end_layout
 
 \begin_layout Abstract
-We extend variable-bandwidth balloon estimators and sample-smoothing estimators
- by a shift parameter and derive their asymptotic bias, variance and mean
- (integrated) squared error.
- We argue that most kernel density estimators are asymptotically equivalent
- to one of the two estimators considered and develop a general framework
- to evaluate their asymptotic properties.
- The method is applied to derive the asymptotic properties of density estimators
- with gamma, log-normal, Birnbaum-Saunders, inverse Gaussian and reciprocal
- inverse Gaussian kernels.
- We propose two new density estimators for positive random variables.
+We extend balloon and sample-smoothing estimators, two types of variable-bandwid
+th kernel density estimators, by a shift parameter and derive their asymptotic
+ properties.
+ Our approach facilitates the unified study of a wide range of density estimator
+s which are subsumed under these two general classes of kernel density estimator
+s.
+ We demonstrate our method by deriving the asymptotic bias, variance, and
+ mean (integrated) squared error of density estimators with gamma, log-normal,
+ Birnbaum-Saunders, inverse Gaussian and reciprocal inverse Gaussian kernels.
+ We propose two new density estimators for positive random variables that
+ yield properly-normalised density estimates.
+ Plugin expressions for bandwidth estimation are provided to facilitate
+ easy exploratory data analysis.
 \end_layout
 
 \begin_layout Section
@@ -174,7 +178,7 @@ Kernel density estimation with fixed bandwidth has become the most common
 \end_inset
 
 where 
-\begin_inset Formula $\left\{ X_{i}\right\} $
+\begin_inset Formula $\left\{ X_{i}:i=1,\ldots,n\right\} $
 \end_inset
 
  is a set of 
@@ -220,9 +224,20 @@ key "Silverman1986"
 \end_inset
 
 .
+ 
 \end_layout
 
 \begin_layout Standard
+Before outlining the remainder of this paper, we briefly review three topics
+ for which we will provide a unified treatment: variable-bandwidth KDEs,
+ shifted KDEs and KDEs with asymmetric kernels.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Variable-bandwidth KDEs: 
+\emph default
 Choosing the fixed bandwidth 
 \begin_inset Formula $h$
 \end_inset
@@ -234,10 +249,7 @@ Choosing the fixed bandwidth
  If the bandwidth is large, low-density regions are smoothed appropriately.
  Unfortunately, high-density regions will be oversmoothed and small-scale
  features will be masked.
-\end_layout
-
-\begin_layout Standard
-Terrell and Scott considered two variable-bandwidth KDEs to alleviate this
+ Terrell and Scott considered two variable-bandwidth KDEs to alleviate this
  problem 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -255,7 +267,15 @@ Balloon estimators
 evaluation point
 \emph default
 , i.e.
- the point at which they are evaluated,
+ the point, 
+\begin_inset Formula $x$
+\end_inset
+
+, at which 
+\begin_inset Formula $f\left(x\right)$
+\end_inset
+
+ needs to be estimated,
 \begin_inset Formula 
 \begin{equation}
 \hat{f}\left(x\right)=\frac{1}{nh\left(x\right)}\sum_{i=1}^{n}K\left(\frac{X_{i}-x}{h\left(x\right)}\right).\label{eq:balloon-estimator}
@@ -263,7 +283,7 @@ evaluation point
 
 \end_inset
 
-The bandwidth of 
+By contrast, the bandwidth of 
 \emph on
 sample-smoothing estimators
 \emph default
@@ -296,6 +316,10 @@ reference "eq:smoothing-estimator"
 \end_layout
 
 \begin_layout Standard
+
+\emph on
+Shifted KDEs: 
+\emph default
 Standard KDEs tend to overestimate densities in regions with few samples
  and underestimate densities in regions with many samples.
  Samiuddin and El-Sayyad proposed to shift samples slightly from low-density
@@ -316,10 +340,7 @@ key "Hall2002a"
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-KDEs with variable bandwidth and shifted samples were considered by Jones
+ KDEs with variable bandwidth and shifted samples were considered by Jones
  et al.
  in the context of sample-smoothing estimators 
 \begin_inset CommandInset citation
@@ -329,8 +350,44 @@ key "Jones1994"
 \end_inset
 
 .
- In the following, we provide a more general treatment of shifted sample-smoothi
-ng estimators and introduce shifted balloon estimators.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Asymmetric KDEs:
+\emph default
+ A literature on using asymmetric kernels for density estimation has developed
+ in parallel: gamma 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chen2000"
+
+\end_inset
+
+, log-normal and Birnbaum-Saunders 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Jin2003"
+
+\end_inset
+
+, as well as inverse Gaussian and reciprocal inverse Gaussian 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Scaillet2004"
+
+\end_inset
+
+ eliminate bias on or near the boundary of a (semi-)bounded interval.
+ Whenever a new kernel is being considered, its asymptotic properties have
+ to be carefully derived.
+\end_layout
+
+\begin_layout Standard
+In the following, we provide a more general treatment of shifted sample-smoothin
+g estimators and introduce shifted balloon estimators.
  After discussing mathematical preliminaries in Section
 \begin_inset space ~
 \end_inset
@@ -361,8 +418,9 @@ reference "sec:smoothing"
 \end_inset
 
 , respectively.
- We apply our method to density estimators with gamma, log-normal, Birnbaum-Saun
-ders, inverse Gaussian and reciprocal inverse Gaussian kernels in Section
+ We derive the asymptotic bias, variance and mean (integrated) squared error
+ for each class of estimators.
+ In Section
 \begin_inset space ~
 \end_inset
 
@@ -373,7 +431,10 @@ reference "sec:application"
 
 \end_inset
 
- and derive plugin expressions for bandwidth selection.
+, we apply our results to density estimators with gamma, log-normal, Birnbaum-Sa
+unders, inverse Gaussian and reciprocal inverse Gaussian kernels, derive
+ plugin expressions for bandwidth selection, and propose two new density
+ estimators for density estimation on the positive real line.
  We conclude in Section
 \begin_inset space ~
 \end_inset
@@ -595,6 +656,10 @@ name "sec:balloon"
 
 \end_layout
 
+\begin_layout Standard
+We now provide our modified version of the balloon estimator.
+\end_layout
+
 \begin_layout Definition
 A shifted balloon estimator is a kernel density estimator whose bandwidth
  depends on the point 
@@ -632,6 +697,17 @@ where
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+The kernel is thus shifted with respect to the sample by a small amount
+ 
+\begin_inset Formula $h^{p}\left(x\right)\delta\left(x\right)$
+\end_inset
+
+ which depends on the evaluation point and vanishes as the bandwidth decreases.
+ Shifted balloon estimators do not yield properly-normalised density estimates
+ in general similar to their unshifted counterparts.
 \end_layout
 
 \begin_layout Standard
@@ -747,9 +823,20 @@ key "Terrell1992"
 \end_inset
 
 .
- Any dependence of the bias on the first derivative of the generating distributi
-on is due to the shift between the kernel mean and the associated sample
- as Chen noted in the context of density estimators using gamma kernels
+ We thus see from Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:balloon-bias"
+
+\end_inset
+
+ that any dependence of the bias on the first derivative of the generating
+ distribution is due to the shift between the kernel mean and the associated
+ sample as Chen noted in the context of density estimators using gamma kernels
  
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -840,6 +927,14 @@ where
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+Again, the kernel is shifted with respect to the sample by a small amount
+ but the magnitude on the shift depends on the sample and not the evaluation
+ point.
+ Shifted sample-smoothing estimators are guaranteed to yield properly-normalised
+ density estimates.
 \end_layout
 
 \begin_layout Standard
@@ -975,7 +1070,12 @@ name "sec:application"
 \end_layout
 
 \begin_layout Standard
-Recall the definition of the general weight function estimator which we
+Having derived the asymptotic properties of shifted balloon and shifted
+ sample-smoothing estimators allows us to obtain the asymptotic properties
+ of a range of kernel density estimators easily.
+ Before applying our method, we need to make a distinction that is immaterial
+ for symmetric kernels.
+ Recall the definition of the general weight function estimator which we
  repeat here for ease of reference: 
 \begin_inset Formula 
 \begin{equation}
@@ -996,7 +1096,7 @@ A weight function
 \emph on
 proper
 \emph default
- if 
+ if and only if 
 \begin_inset Formula 
 \[
 \int dy\,W\left(y,x\right)=1.
@@ -1008,15 +1108,7 @@ It is called
 \emph on
 improper
 \emph default
- if
-\begin_inset Formula 
-\[
-\int dx\,W\left(y,x\right)=1.
-\]
-
-\end_inset
-
-
+ otherwise.
 \end_layout
 
 \begin_layout Standard
@@ -1109,8 +1201,19 @@ Intuitively, the contribution from any weight function becomes ever more
  sharply peaked as the bandwidth of the estimator decreases.
  Consequently, we should be able to approximate general weight functions
  by more tractable kernels because the global properties become less important.
- In fact, the improper estimators mentioned above are asymptotically equivalent
- to shifted balloon estimators.
+ We will see that the improper estimators in the literature are asymptotically
+ equivalent to shifted balloon estimators as defined in Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:balloon-definition"
+
+\end_inset
+
+.
  We consider the gamma-kernel density estimator proposed by Chen 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1133,7 +1236,7 @@ reference "subsec:other-kernels"
 \end_layout
 
 \begin_layout Standard
-After reparametrisation, Chen's estimator is given by
+After reparametrisation, Chen's improper estimator is given by
 \begin_inset Formula 
 \[
 \hat{f}\left(x\right)=\sum_{i=1}^{n}\mathrm{G}\left(X_{i};1+\frac{x}{\sigma^{2}},\sigma^{2}\right),
@@ -1146,11 +1249,14 @@ where
 \end_inset
 
  is a bandwidth parameter, and 
-\begin_inset Formula $\mathrm{G}\left(t;k,\theta\right)=\frac{\theta^{-k}}{\Gamma\left(k\right)}x^{k-1}\exp\left(-\frac{x}{\theta}\right)$
+\begin_inset Formula $\mathrm{G}\left(t;k,\theta\right)=\frac{\theta^{-k}}{\Gamma\left(k\right)}x^{k-1}\exp\left(-\frac{t}{\theta}\right)$
 \end_inset
 
- denotes the probability density function of a gamma random variable with
- shape parameter 
+ denotes the probability density function of a gamma random variable 
+\begin_inset Formula $t$
+\end_inset
+
+ with shape parameter 
 \begin_inset Formula $k$
 \end_inset
 
@@ -1189,7 +1295,12 @@ h^{2}\left(x\right)\delta\left(x\right) & =\sigma^{2}.
 
 \end_inset
 
-Using Eqs.
+
+\end_layout
+
+\begin_layout Standard
+Having represented Chen's improper estimator as a shifted balloon estimator,
+ we can find the bias and variance using Eqs.
 \begin_inset space ~
 \end_inset
 
@@ -1207,7 +1318,7 @@ reference "eq:balloon-var"
 
 \end_inset
 
- the bias and variance are
+:
 \begin_inset Formula 
 \begin{align*}
 \bias\hat{f}\left(x\right) & =\sigma^{2}f'\left(x\right)+\frac{\sigma^{2}\left(x+\sigma^{2}\right)}{2}f''\left(x\right)+o\left(\sigma^{2}\right)\\
@@ -1277,7 +1388,8 @@ Density estimate of
 on (dashed black line).
  The generating distribution is shown as a dotted black line and individual
  samples are shown as markers on the horizontal axis.
- The bandwidth was obtained using the plugin expression in Eq.
+ The bandwidth for both estimators was obtained using the plugin expression
+ in Eq.
 \begin_inset space ~
 \end_inset
 
@@ -1285,6 +1397,28 @@ on (dashed black line).
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:chen-plugin"
+
+\end_inset
+
+ which minimises the MISE in Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:chen-lognormal-mise"
+
+\end_inset
+
+ as shown in Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:bandwidth-comparison"
 
 \end_inset
 
@@ -1298,12 +1432,23 @@ reference "eq:chen-plugin"
 
 \end_inset
 
-Approximating 
+
+\end_layout
+
+\begin_layout Standard
+Extending the work by Chen 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chen2000"
+
+\end_inset
+
+, we approximate 
 \begin_inset Formula $f\left(x\right)$
 \end_inset
 
- by a reference distribution with known functional form enables us to obtain
- a plugin expression for selecting the bandwidth.
+ by a reference distribution with known functional form which enables us
+ to obtain a plugin expression for selecting the bandwidth.
  The parametric form of the reference distribution is largely a free choice;
  we assume that 
 \begin_inset Formula $f(x)$
@@ -1320,9 +1465,9 @@ Approximating
  for convenience.
  Integrating yields 
 \begin_inset Formula 
-\[
-\mise\hat{f}=\sigma^{4}\frac{\exp\left(\frac{9\Sigma^{2}}{4}-3\mu\right)\left(12+20\Sigma^{2}+9\Sigma^{4}\right)}{128\sqrt{\pi}\Sigma^{4}}+\frac{\exp\left(\frac{\Sigma^{2}}{8}-\frac{\mu}{2}\right)}{2n\sigma\sqrt{\pi}}
-\]
+\begin{equation}
+\mise\hat{f}=\sigma^{4}\frac{\exp\left(\frac{9\Sigma^{2}}{4}-3\mu\right)\left(12+20\Sigma^{2}+9\Sigma^{4}\right)}{128\sqrt{\pi}\Sigma^{4}}+\frac{\exp\left(\frac{\Sigma^{2}}{8}-\frac{\mu}{2}\right)}{2n\sigma\sqrt{\pi}}\label{eq:chen-lognormal-mise}
+\end{equation}
 
 \end_inset
 
@@ -1454,7 +1599,7 @@ g the MISE with respect to
 \begin_inset Formula $\sigma$
 \end_inset
 
- yields plugin expression 
+ yields the plugin expression 
 \begin_inset Formula 
 \[
 \sigma^{*}=\frac{2^{4/5}\Sigma\exp\left(\frac{\mu}{2}-\frac{17\Sigma^{2}}{40}\right)}{\left(12+4\Sigma^{2}+\Sigma^{4}\right)^{1/5}}n^{-1/5}.
@@ -1577,7 +1722,9 @@ status open
 
 
 \backslash
-vspace{15cm}
+vspace{.5
+\backslash
+textwidth}
 \end_layout
 
 \end_inset
@@ -1585,7 +1732,7 @@ vspace{15cm}
 
 \begin_inset Tabular
 <lyxtabular version="3" rows="6" columns="6">
-<features rotate="0" tabularvalignment="middle" tabularwidth="100theight%">
+<features rotate="0" tabularvalignment="middle" tabularwidth="90theight%">
 <column alignment="left" valignment="top" width="0pt">
 <column alignment="left" valignment="top">
 <column alignment="left" valignment="top">
@@ -2029,6 +2176,10 @@ Parametrisation
 \end_layout
 
 \begin_layout Plain Layout
+\begin_inset VSpace 2em
+\end_inset
+
+
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -2071,10 +2222,14 @@ List of probability distributions with their mean and variance.
 \end_layout
 
 \begin_layout Plain Layout
+\begin_inset VSpace 2em
+\end_inset
+
+
 \begin_inset Tabular
 <lyxtabular version="3" rows="7" columns="6">
-<features rotate="0" tabularvalignment="middle" tabularwidth="100theight%">
-<column alignment="left" valignment="top">
+<features rotate="0" tabularvalignment="middle" tabularwidth="90theight%">
+<column alignment="left" valignment="top" width="0pt">
 <column alignment="left" valignment="top">
 <column alignment="left" valignment="top" width="0pt">
 <column alignment="left" valignment="top">
@@ -2137,7 +2292,7 @@ Proper weight function
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2212,7 +2367,7 @@ Kernel with ref.
 \begin_inset Text
 
 \begin_layout Plain Layout
-gamma 
+G 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Chen2000,Jeon2014"
@@ -2286,7 +2441,7 @@ key "Chen2000,Jeon2014"
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2584,6 +2739,10 @@ key "Scaillet2004"
 \end_layout
 
 \begin_layout Plain Layout
+\begin_inset VSpace 2em
+\end_inset
+
+
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -2642,7 +2801,14 @@ reference "tbl:kernels"
 \begin_inset Formula $\sigma\rightarrow0$
 \end_inset
 
-, all kernels converge to a normal distribution with mean 
+, all kernels converge to a normal distribution 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Johnson1994"
+
+\end_inset
+
+ with mean 
 \begin_inset Formula $x+h^{2}\left(x\right)\delta\left(x\right)$
 \end_inset
 
@@ -2650,14 +2816,7 @@ reference "tbl:kernels"
 \begin_inset Formula $h^{2}\left(x\right)$
 \end_inset
 
- such that our method is applicable 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Johnson1994"
-
-\end_inset
-
-.
+ such that our method is applicable.
  The parametrisation for proper estimators can be obtained by exchanging
  the role of the evaluation point and the associated sample.
 \end_layout
@@ -2707,7 +2866,7 @@ key "Silverman1986"
 
 \end_inset
 
-).
+), which is widely used.
  The method we have developed is not applicable to proper estimators with
  RIG kernels because the assumption that 
 \begin_inset Formula $z\left(y,x\right)=\frac{y-x}{\sigma y^{3/2}}$
@@ -2817,11 +2976,12 @@ key "Jeon2014"
 \begin_layout Standard
 Given the plethora of density estimators, which ones should be used? If
  the generating density is expected to have a large gradients, the proper
- gamma estimator and the improper IG/RIG estimators are suitable because
- their bias is independent of the first derivative.
- The improper LN, BS, IG and RIG estimators as well as the proper gamma
- estimator have relatively low bias near the origin and are appropriate
- for samples that are clustered near zero.
+ gamma estimator and the improper inverse Gaussian (IG) or reciprocal inverse
+ Gaussian (RIG) estimators are suitable because their bias is independent
+ of the first derivative.
+ The improper log-normal, Birnbaum-Saunders, IG and RIG estimators as well
+ as the proper gamma estimator have relatively low bias near the origin
+ and are appropriate for samples that are clustered near zero.
  Estimators whose effective bandwidth has a higher-order dependence on the
  evaluation point should be used for heavily-skewed data to avoid spurious
  wiggles in the tails of the distribution.
@@ -3653,10 +3813,32 @@ reference "eq:jeon-kim-estimator"
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "/Users/tillhoffmann/Google Drive/papers/library"
 options "unsrt"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+printbibliography
+\end_layout
 
 \end_inset
 
