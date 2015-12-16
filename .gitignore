@@ -65,3 +65,11 @@ target/
 
 # ipython
 .ipynb_checkpoints
+
+# Latex stuff
+*.aux
+*.bbl
+*.dvi
+*.run.xml
+*.bib
+*.blg

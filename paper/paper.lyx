@@ -4,8 +4,9 @@
 \begin_header
 \textclass amsart
 \begin_preamble
-\usepackage[backend=biber,style=numeric,sorting=none,firstinits=true]{biblatex}
+\usepackage[backend=bibtex,style=numeric,sorting=none,firstinits=true]{biblatex}
 \addbibresource{/Users/tillhoffmann/google_drive/papers/library.bib}
+\usepackage[foot]{amsaddr}
 \end_preamble
 \use_default_options false
 \begin_removed_modules
@@ -134,16 +135,41 @@ theorems-ams-bytype
 
 \end_layout
 
-\begin_layout Title
-Unified treatment of the asymptotics of asymmetric kernel density estimators
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+title[Unified treatment of the asymptotics of asymmetric KDEs]{Unified treatment
+ of the asymptotics of asymmetric kernel density estimators}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Author
 Till Hoffmann
 \end_layout
 
+\begin_layout Address
+Department of Mathematics, Imperial College London, SW7 2AZ, United Kingdom
+\end_layout
+
+\begin_layout Email
+t.hoffmann13@imperial.ac.uk
+\end_layout
+
 \begin_layout Author
 Nick Jones
+\end_layout
+
+\begin_layout Email
+n.jones@imperial.ac.uk
 \end_layout
 
 \begin_layout Abstract
@@ -387,7 +413,9 @@ key "Scaillet2004"
 
 \begin_layout Standard
 In the following, we provide a more general treatment of shifted sample-smoothin
-g estimators and introduce shifted balloon estimators.
+g estimators and introduce shifted balloon estimators, and develop a generic
+ framework to obtain the asymptotic properties of a range of kernel density
+ estimators.
  After discussing mathematical preliminaries in Section
 \begin_inset space ~
 \end_inset
@@ -707,7 +735,7 @@ The kernel is thus shifted with respect to the sample by a small amount
 
  which depends on the evaluation point and vanishes as the bandwidth decreases.
  Shifted balloon estimators do not yield properly-normalised density estimates
- in general similar to their unshifted counterparts.
+ in general, similar to their unshifted counterparts.
 \end_layout
 
 \begin_layout Standard
@@ -890,6 +918,11 @@ name "sec:smoothing"
 
 \end_layout
 
+\begin_layout Standard
+In the following, we discuss our modified version of the sample-smoothing
+ estimator.
+\end_layout
+
 \begin_layout Definition
 A shifted sample-smoothing estimator is a kernel density estimator whose
  bandwidth depends on the samples 
@@ -931,7 +964,7 @@ where
 
 \begin_layout Standard
 Again, the kernel is shifted with respect to the sample by a small amount
- but the magnitude on the shift depends on the sample and not the evaluation
+ but the magnitude of the shift depends on the sample and not the evaluation
  point.
  Shifted sample-smoothing estimators are guaranteed to yield properly-normalised
  density estimates.
@@ -1199,8 +1232,9 @@ key "Scaillet2004"
 \begin_layout Standard
 Intuitively, the contribution from any weight function becomes ever more
  sharply peaked as the bandwidth of the estimator decreases.
- Consequently, we should be able to approximate general weight functions
- by more tractable kernels because the global properties become less important.
+ Because the global properties become less important, we should be able
+ to approximate general weight functions by simpler kernels that peak where
+ the sample and evaluation point are close.
  We will see that the improper estimators in the literature are asymptotically
  equivalent to shifted balloon estimators as defined in Eq.
 \begin_inset space ~
@@ -1214,6 +1248,15 @@ reference "eq:balloon-definition"
 \end_inset
 
 .
+ This observation enables us to derive their asymptotic properties using
+ the general results from Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:balloon"
+
+\end_inset
+
+ instead of having to derive them independently.
  We consider the gamma-kernel density estimator proposed by Chen 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1722,7 +1765,7 @@ status open
 
 
 \backslash
-vspace{.5
+vspace{.65
 \backslash
 textwidth}
 \end_layout
@@ -3356,7 +3399,7 @@ reference "eq:smoothing-change-of-variables"
 \begin{align}
 dz & =\left(\frac{\frac{d}{dy}\left(y-x+h^{p}\left(y\right)\delta\left(y\right)\right)}{h\left(y\right)}-\frac{y-x+h^{p}\left(y\right)\delta\left(y\right)}{h\left(y\right)}\frac{h'\left(y\right)}{h\left(y\right)}\right)dy\nonumber \\
  & =\frac{dy}{h\left(y\right)}\frac{d}{dy}\left(y-x+h^{p}\left(y\right)\delta\left(y\right)-zh\left(y\right)\right)\nonumber \\
-\text{and}\quad L & =\int dz\,\phi\left(z\right)\frac{\theta\left(y\left(z,x\right)\right)}{\left[\frac{d}{dy}\left(y-x+h^{p}\left(y\right)\delta\left(y\right)-zh\left(y\right)\right)\right]_{y=y\left(z,x\right)}}.\label{eq:smoothing-transformed}
+\text{and}\quad L & =\int dz\,\phi\left(z\right)\times\frac{\theta\left(y\left(z,x\right)\right)}{\left[\frac{d}{dy}\left(y-x+h^{p}\left(y\right)\delta\left(y\right)-zh\left(y\right)\right)\right]_{y=y\left(z,x\right)}}.\label{eq:smoothing-transformed}
 \end{align}
 
 \end_inset
@@ -3369,7 +3412,7 @@ For fixed
 \begin_inset Formula $z$
 \end_inset
 
-, we express the second term in Eq.
+, we express the fraction in the integrand of Eq.
 \begin_inset space ~
 \end_inset
 
