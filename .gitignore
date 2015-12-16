@@ -71,5 +71,5 @@ target/
 *.bbl
 *.dvi
 *.run.xml
-*.bib
+*-blx.bib
 *.blg

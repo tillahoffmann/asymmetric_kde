@@ -5,7 +5,7 @@
 \textclass amsart
 \begin_preamble
 \usepackage[backend=bibtex,style=numeric,sorting=none,firstinits=true]{biblatex}
-\addbibresource{/Users/tillhoffmann/google_drive/papers/library.bib}
+\addbibresource{paper.bib}
 \usepackage[foot]{amsaddr}
 \end_preamble
 \use_default_options false
@@ -3862,7 +3862,7 @@ status open
 \begin_layout Plain Layout
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
-bibfiles "/Users/tillhoffmann/Google Drive/papers/library"
+bibfiles "paper"
 options "unsrt"
 
 \end_inset
