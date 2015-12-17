@@ -1,4 +1,5 @@
-clear : 
+clear :
+	rm -f paper.tex
 	rm -f paper-blx.bib
 	rm -f paper.aux
 	rm -f paper.bbl
@@ -14,3 +15,9 @@ pdf : paper.tex paper.bib improper-gamma.ps bandwidth-comparison.ps
 	latex paper
 	latex paper
 	dvipdf paper
+	open paper.pdf
+
+lyx : paper.lyx
+	lyx --force-overwrite --export pdflatex paper.lyx
+
+all : clear lyx pdf
