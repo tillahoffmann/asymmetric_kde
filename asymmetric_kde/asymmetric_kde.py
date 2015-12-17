@@ -316,14 +316,14 @@ class ProperGammaEstimator(KernelDensityEstimator):
         # Calculate the shape and scale parameters
         scale = bandwidth ** 2
         if isinstance(samples, np.ndarray):
-            shape = 1 + samples[:, None] / scale
+            shape = 1 + samples[None] / scale
         else:
             shape = 1 + samples / scale
         # Evaluate the gamma distribution
         if isinstance(points, np.ndarray):
-            points = points[None, :]
+            points = points[:, None]
         loggamma = (shape-1) * np.log(points) - points / scale - shape * np.log(scale) - gammaln(shape)
-        return np.exp(loggamma).T
+        return np.exp(loggamma)
 
     def evaluate_kernel_product_integral(self, bandwidth, samples1, samples2):
         # Calculate the shape and scale parameters
