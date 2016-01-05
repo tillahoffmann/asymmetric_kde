@@ -4,7 +4,7 @@
 \begin_header
 \textclass imsart
 \begin_preamble
-\usepackage{hyperref}
+\usepackage{imsart, hyperref}
 \end_preamble
 \options aos,preprint
 \use_default_options false
@@ -12,7 +12,7 @@
 theorems-ams-bytype
 \end_modules
 \maintain_unincluded_children false
-\language british
+\language american
 \language_package none
 \inputencoding auto
 \fontencoding default
@@ -145,6 +145,13 @@ title{Unified treatment of the asymptotics of asymmetric kernel density
 
 
 \backslash
+runtitle{Asymptotics of asymmetric KDEs}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
 author{Till Hoffmann
 \backslash
 corref{}
@@ -166,6 +173,15 @@ and
 author{Nick Jones
 \backslash
 ead[label=e2]{nick.jones@imperial.ac.uk}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+runauthor{T.
+ Hoffmann and N.
+ Jones}
 \end_layout
 
 \begin_layout Plain Layout
@@ -214,13 +230,6 @@ printead*{e2}}
 
 \end_layout
 
-\begin_layout Plain Layout
-
-
-\backslash
-maketitle
-\end_layout
-
 \end_inset
 
 
@@ -240,6 +249,55 @@ s.
  yield properly-normalised density estimates.
  Plugin expressions for bandwidth estimation are provided to facilitate
  easy exploratory data analysis.
+ We compare the plugin expressions with cross-validation using simulated
+ data (all source code is publicly available).
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{keyword}[class=MSC] 
+\backslash
+kwd{62G07}
+\backslash
+end{keyword}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{keyword} 
+\backslash
+kwd{kernel density estimation}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+kwd{asymmetric kernel} 
+\backslash
+kwd{asymptotics} 
+\backslash
+end{keyword}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+maketitle
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -676,7 +734,7 @@ reference "eq:smoothing-estimator"
 
 , and the estimators we consider in the following two sections can be expressed
  in terms of a kernel.
- Following Terrell and Scott, we formalise the notion of a kernel in the
+ Following Terrell and Scott, we formalize the notion of a kernel in the
  following definition 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1497,7 +1555,7 @@ reference "eq:chen-plugin"
 
 \end_inset
 
- which minimises the MISE in Eq.
+ which minimizes the MISE in Eq.
 \begin_inset space ~
 \end_inset
 
@@ -1593,7 +1651,15 @@ reference "fig:improper-gamma"
 \end_inset
 
 .
- 
+ All source code used to generate the figures in this publication is publicly
+ available 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SourceCode"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection

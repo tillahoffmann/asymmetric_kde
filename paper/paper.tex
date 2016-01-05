@@ -23,7 +23,7 @@
   \newtheorem{lem}{\protect\lemmaname}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
-\usepackage{hyperref}
+\usepackage{imsart, hyperref}
 
 \makeatother
 
@@ -45,16 +45,22 @@
 
 
 \title{Unified treatment of the asymptotics of asymmetric kernel density estimators}
+\runtitle{Asymptotics of asymmetric KDEs}
 \author{Till Hoffmann\corref{}\ead[label=e1]{t.hoffmann13@imperial.ac.uk}}
 \and
 \author{Nick Jones\ead[label=e2]{nick.jones@imperial.ac.uk}}
+\runauthor{T. Hoffmann and N. Jones}
 \affiliation{Imperial College London}
 \address{Department of Mathematics\\Imperial College London\\London, SW7 2AZ\\United Kingdom\\\printead{e1}\\ \phantom{E-mail:\ }\printead*{e2}}
 
-\maketitle
 \begin{abstract}
-We extend balloon and sample-smoothing estimators, two types of variable-bandwidth kernel density estimators, by a shift parameter and derive their asymptotic properties. Our approach facilitates the unified study of a wide range of density estimators which are subsumed under these two general classes of kernel density estimators. We demonstrate our method by deriving the asymptotic bias, variance, and mean (integrated) squared error of density estimators with gamma, log-normal, Birnbaum-Saunders, inverse Gaussian and reciprocal inverse Gaussian kernels. We propose two new density estimators for positive random variables that yield properly-normalised density estimates. Plugin expressions for bandwidth estimation are provided to facilitate easy exploratory data analysis.
+We extend balloon and sample-smoothing estimators, two types of variable-bandwidth kernel density estimators, by a shift parameter and derive their asymptotic properties. Our approach facilitates the unified study of a wide range of density estimators which are subsumed under these two general classes of kernel density estimators. We demonstrate our method by deriving the asymptotic bias, variance, and mean (integrated) squared error of density estimators with gamma, log-normal, Birnbaum-Saunders, inverse Gaussian and reciprocal inverse Gaussian kernels. We propose two new density estimators for positive random variables that yield properly-normalised density estimates. Plugin expressions for bandwidth estimation are provided to facilitate easy exploratory data analysis. We compare the plugin expressions with cross-validation using simulated data (all source code is publicly available).
 \end{abstract}
+\begin{keyword}[class=MSC] \kwd{62G07}\end{keyword}
+\begin{keyword} \kwd{kernel density estimation}
+\kwd{asymmetric kernel} \kwd{asymptotics} \end{keyword}
+\maketitle
+
 
 \section{Introduction}
 
@@ -122,7 +128,7 @@ The mean integrated squared error (MISE) is defined as
 \]
 and will be our criterion for the global quality of density estimates.
 
-The balloon estimator in Eq.~\eqref{eq:balloon-estimator}, the sample-smoothing estimator in Eq.~\eqref{eq:smoothing-estimator}, and the estimators we consider in the following two sections can be expressed in terms of a kernel. Following Terrell and Scott, we formalise the notion of a kernel in the following definition \cite{Terrell1992}.
+The balloon estimator in Eq.~\eqref{eq:balloon-estimator}, the sample-smoothing estimator in Eq.~\eqref{eq:smoothing-estimator}, and the estimators we consider in the following two sections can be expressed in terms of a kernel. Following Terrell and Scott, we formalize the notion of a kernel in the following definition \cite{Terrell1992}.
 \begin{defn}
 \label{def:order-p-kernel}An order-$p$ kernel is a univariate, non-negative function $K$ such that 
 \begin{equation}
@@ -266,7 +272,7 @@ where we have used that Gaussians are second-order kernels with $\kappa=\frac{1}
 \includegraphics{improper-gamma}
 \par\end{centering}
 
-\caption{\label{fig:improper-gamma}Density estimate of $n=300$ samples drawn from a log-normal distribution with logarithmic mean $\mu=1$ and logarithmic variance $\Sigma^{2}=1$ using an improper gamma estimator (solid black line) and a Gaussian approximation (dashed black line). The generating distribution is shown as a dotted black line and individual samples are shown as markers on the horizontal axis. The bandwidth for both estimators was obtained using the plugin expression in Eq.~\eqref{eq:chen-plugin} which minimises the MISE in Eq.~\eqref{eq:chen-lognormal-mise}.}
+\caption{\label{fig:improper-gamma}Density estimate of $n=300$ samples drawn from a log-normal distribution with logarithmic mean $\mu=1$ and logarithmic variance $\Sigma^{2}=1$ using an improper gamma estimator (solid black line) and a Gaussian approximation (dashed black line). The generating distribution is shown as a dotted black line and individual samples are shown as markers on the horizontal axis. The bandwidth for both estimators was obtained using the plugin expression in Eq.~\eqref{eq:chen-plugin} which minimizes the MISE in Eq.~\eqref{eq:chen-lognormal-mise}.}
 \end{figure}
 
 
@@ -278,7 +284,7 @@ and setting the derivative of the MISE with respect to $\sigma$ to zero gives th
 \begin{equation}
 \sigma^{*}=\frac{2^{4/5}\Sigma\exp\left(\frac{\mu}{2}-\frac{17\Sigma^{2}}{40}\right)}{\left(12+20\Sigma^{2}+9\Sigma^{4}\right)^{1/5}}n^{-1/5}.\label{eq:chen-plugin}
 \end{equation}
-The expression allows us to obtain a bandwidth by estimating $\mu$ and $\Sigma$ from the samples without the need for computationally-expensive cross-validation. Plugin bandwidth estimators are particularly useful for preliminary data exploration. An example density estimate is shown in Figure~\ref{fig:improper-gamma}. 
+The expression allows us to obtain a bandwidth by estimating $\mu$ and $\Sigma$ from the samples without the need for computationally-expensive cross-validation. Plugin bandwidth estimators are particularly useful for preliminary data exploration. An example density estimate is shown in Figure~\ref{fig:improper-gamma}. All source code used to generate the figures in this publication is publicly available \cite{SourceCode}.
 
 
 \subsection{Density estimation using proper weight functions}
