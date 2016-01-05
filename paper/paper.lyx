@@ -2,18 +2,12 @@
 \lyxformat 474
 \begin_document
 \begin_header
-\textclass amsart
+\textclass imsart
 \begin_preamble
-\usepackage[backend=bibtex,style=numeric,sorting=none,firstinits=true]{biblatex}
-\addbibresource{paper.bib}
-\usepackage[foot]{amsaddr}
+\usepackage{hyperref}
 \end_preamble
+\options aos,preprint
 \use_default_options false
-\begin_removed_modules
-theorems-ams
-eqs-within-sections
-figs-within-sections
-\end_removed_modules
 \begin_modules
 theorems-ams-bytype
 \end_modules
@@ -35,7 +29,7 @@ theorems-ams-bytype
 \graphics default
 \default_output_format default
 \output_sync 0
-\bibtex_command biber
+\bibtex_command bibtex
 \index_command default
 \paperfontsize default
 \spacing single
@@ -143,33 +137,93 @@ status open
 
 
 \backslash
-title[Unified treatment of the asymptotics of asymmetric KDEs]{Unified treatment
- of the asymptotics of asymmetric kernel density estimators}
+title{Unified treatment of the asymptotics of asymmetric kernel density
+ estimators}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+author{Till Hoffmann
+\backslash
+corref{}
+\backslash
+ead[label=e1]{t.hoffmann13@imperial.ac.uk}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+and
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+author{Nick Jones
+\backslash
+ead[label=e2]{nick.jones@imperial.ac.uk}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+affiliation{Imperial College London}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+address{Department of Mathematics
+\backslash
+
+\backslash
+Imperial College London
+\backslash
+
+\backslash
+London, SW7 2AZ
+\backslash
+
+\backslash
+United Kingdom
+\backslash
+
+\backslash
+
+\backslash
+printead{e1}
+\backslash
+
+\backslash
+ 
+\backslash
+phantom{E-mail:
+\backslash
+ }
+\backslash
+printead*{e2}}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+maketitle
 \end_layout
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Author
-Till Hoffmann
-\end_layout
-
-\begin_layout Address
-Department of Mathematics, Imperial College London, SW7 2AZ, United Kingdom
-\end_layout
-
-\begin_layout Email
-t.hoffmann13@imperial.ac.uk
-\end_layout
-
-\begin_layout Author
-Nick Jones
-\end_layout
-
-\begin_layout Email
-n.jones@imperial.ac.uk
 \end_layout
 
 \begin_layout Abstract
@@ -1747,21 +1801,6 @@ sideways true
 status open
 
 \begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-vspace{.65
-\backslash
-textwidth}
-\end_layout
-
-\end_inset
-
-
 \begin_inset Tabular
 <lyxtabular version="3" rows="6" columns="6">
 <features rotate="0" tabularvalignment="middle" tabularwidth="90theight%">
@@ -3029,13 +3068,17 @@ In future work, we would like to apply our approach to further kernels and
 
 \begin_layout Section
 \start_of_appendix
+Proofs
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset label
 LatexCommand label
 name "app:proofs"
 
 \end_inset
 
-Proofs
+
 \end_layout
 
 \begin_layout Lemma
@@ -3760,16 +3803,15 @@ reference "eq:smoothing-var-proof"
 
 \begin_layout Section
 Cross-validation
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset label
 LatexCommand label
 name "app:cross-validation"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 The quantity 
 \begin_inset Formula 
 \begin{equation}
@@ -3845,32 +3887,10 @@ reference "eq:jeon-kim-estimator"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "paper"
-options "unsrt"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-printbibliography
-\end_layout
+options "imsart-number"
 
 \end_inset
 

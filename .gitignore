@@ -73,6 +73,7 @@ target/
 *.run.xml
 *-blx.bib
 *.blg
+*.out
 
 # PyCharm
 .idea

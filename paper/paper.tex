@@ -1,9 +1,9 @@
 %% LyX 2.1.4 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
-\documentclass{amsart}
+\documentclass[twoside,aos,preprint]{imsart}
 \usepackage[latin9]{inputenc}
 \usepackage{rotfloat}
-\usepackage{amstext}
+\usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{graphicx}
@@ -23,9 +23,7 @@
   \newtheorem{lem}{\protect\lemmaname}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
-\usepackage[backend=bibtex,style=numeric,sorting=none,firstinits=true]{biblatex}
-\addbibresource{paper.bib}
-\usepackage[foot]{amsaddr}
+\usepackage{hyperref}
 
 \makeatother
 
@@ -46,27 +44,17 @@
 \global\long\def\euler{\mathrm{e}}
 
 
-\title[Unified treatment of the asymptotics of asymmetric KDEs]{Unified treatment of the asymptotics of asymmetric kernel density estimators}
+\title{Unified treatment of the asymptotics of asymmetric kernel density estimators}
+\author{Till Hoffmann\corref{}\ead[label=e1]{t.hoffmann13@imperial.ac.uk}}
+\and
+\author{Nick Jones\ead[label=e2]{nick.jones@imperial.ac.uk}}
+\affiliation{Imperial College London}
+\address{Department of Mathematics\\Imperial College London\\London, SW7 2AZ\\United Kingdom\\\printead{e1}\\ \phantom{E-mail:\ }\printead*{e2}}
 
-
-\author{Till Hoffmann}
-
-
-\address{Department of Mathematics, Imperial College London, SW7 2AZ, United Kingdom}
-
-
-\email{t.hoffmann13@imperial.ac.uk}
-
-
-\author{Nick Jones}
-
-
-\email{n.jones@imperial.ac.uk}
+\maketitle
 \begin{abstract}
 We extend balloon and sample-smoothing estimators, two types of variable-bandwidth kernel density estimators, by a shift parameter and derive their asymptotic properties. Our approach facilitates the unified study of a wide range of density estimators which are subsumed under these two general classes of kernel density estimators. We demonstrate our method by deriving the asymptotic bias, variance, and mean (integrated) squared error of density estimators with gamma, log-normal, Birnbaum-Saunders, inverse Gaussian and reciprocal inverse Gaussian kernels. We propose two new density estimators for positive random variables that yield properly-normalised density estimates. Plugin expressions for bandwidth estimation are provided to facilitate easy exploratory data analysis.
 \end{abstract}
-
-\maketitle
 
 \section{Introduction}
 
@@ -332,7 +320,6 @@ As discussed in Appendix~\ref{app:cross-validation}, cross-validation is straigh
 \subsection{Application to estimators with other kernels\label{subsec:other-kernels}}
 
 \begin{sidewaystable}
-\vspace{.65\textwidth}%
 \begin{tabular*}{0.9\textheight}{@{\extracolsep{\fill}}llllll}
 Distribution & $\left\langle t\right\rangle $ & Variance & Parametrisation & $h^{2}\left(x\right)\delta\left(x\right)$ & $h\left(x\right)$\tabularnewline
 \hline 
@@ -379,7 +366,9 @@ In future work, we would like to apply our approach to further kernels and condu
 
 \appendix
 
-\section{\label{app:proofs}Proofs}
+\section{Proofs}
+
+\label{app:proofs}
 \begin{lem}
 \label{lem:integral-balloon}The integral
 
@@ -519,9 +508,9 @@ We use Lemma~\ref{lem:integral-balloon} with $\phi\left(z\right)=K^{2}\left(z\ri
 The second term in Eq.~\eqref{eq:smoothing-var-proof} is absorbed by $o\left(n^{-1}h^{-1}\left(x\right)\right)$ because of its zero-order dependence on $h$$\left(x\right)$.
 \end{proof}
 
-\section{Cross-validation\label{app:cross-validation}}
+\section{Cross-validation}
 
-The quantity 
+\label{app:cross-validation}The quantity 
 \begin{equation}
 M=\int dx\,\hat{f}^{2}\left(x\right)-\frac{2}{n}\sum_{i=1}^{n}\hat{f}_{i}\left(X_{i}\right)\label{eq:mise-estimator}
 \end{equation}
@@ -532,5 +521,7 @@ is an unbiased estimator of the MISE of the density estimator $\hat{f}\left(x\ri
 \end{align*}
 
 
-\printbibliography
+\bibliographystyle{imsart-number}
+\bibliography{paper}
+
 \end{document}
