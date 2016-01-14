@@ -21,7 +21,7 @@ United Kingdom.}
 theorems-std
 \end_modules
 \maintain_unincluded_children false
-\language english
+\language british
 \language_package none
 \inputencoding auto
 \fontencoding default
@@ -154,6 +154,22 @@ s.
  easy exploratory data analysis.
  We compare the plugin expressions with cross-validation using simulated
  data (all source code is publicly available).
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+keywords{kernel density estimation; asymmetric kernel; asymptotics}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -590,7 +606,7 @@ reference "eq:smoothing-estimator"
 
 , and the estimators we consider in the following two sections can be expressed
  in terms of a kernel.
- Following Terrell and Scott, we formalize the notion of a kernel in the
+ Following Terrell and Scott, we formalise the notion of a kernel in the
  following definition 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1411,7 +1427,7 @@ reference "eq:chen-plugin"
 
 \end_inset
 
- which minimizes the MISE in Eq.
+ which minimises the MISE in Eq.
 \begin_inset space ~
 \end_inset
 

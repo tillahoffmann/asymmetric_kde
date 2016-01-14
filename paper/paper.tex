@@ -12,6 +12,8 @@
 \begin{abstract}
 We extend balloon and sample-smoothing estimators, two types of variable-bandwidth kernel density estimators, by a shift parameter and derive their asymptotic properties. Our approach facilitates the unified study of a wide range of density estimators which are subsumed under these two general classes of kernel density estimators. We demonstrate our method by deriving the asymptotic bias, variance, and mean (integrated) squared error of density estimators with gamma, log-normal, Birnbaum-Saunders, inverse Gaussian and reciprocal inverse Gaussian kernels. We propose two new density estimators for positive random variables that yield properly-normalised density estimates. Plugin expressions for bandwidth estimation are provided to facilitate easy exploratory data analysis. We compare the plugin expressions with cross-validation using simulated data (all source code is publicly available).
 \end{abstract}
+\keywords{kernel density estimation; asymmetric kernel; asymptotics}
+
 
 \section{Introduction}
 
@@ -79,7 +81,7 @@ The mean integrated squared error (MISE) is defined as
 \]
 and will be our criterion for the global quality of density estimates.
 
-The balloon estimator in Eq.~\eqref{eq:balloon-estimator}, the sample-smoothing estimator in Eq.~\eqref{eq:smoothing-estimator}, and the estimators we consider in the following two sections can be expressed in terms of a kernel. Following Terrell and Scott, we formalize the notion of a kernel in the following definition \cite{Terrell1992}.
+The balloon estimator in Eq.~\eqref{eq:balloon-estimator}, the sample-smoothing estimator in Eq.~\eqref{eq:smoothing-estimator}, and the estimators we consider in the following two sections can be expressed in terms of a kernel. Following Terrell and Scott, we formalise the notion of a kernel in the following definition \cite{Terrell1992}.
 \begin{defn}
 \label{def:order-p-kernel}An order-$p$ kernel is a univariate, non-negative function $K$ such that 
 \begin{equation}
@@ -223,7 +225,7 @@ where we have used that Gaussians are second-order kernels with $\kappa=\frac{1}
 \includegraphics{improper-gamma}
 \par\end{centering}
 
-\caption{\label{fig:improper-gamma}Density estimate of $n=300$ samples drawn from a log-normal distribution with logarithmic mean $\mu=1$ and logarithmic variance $\Sigma^{2}=1$ using an improper gamma estimator (solid black line) and a Gaussian approximation (dashed black line). The generating distribution is shown as a dotted black line and individual samples are shown as markers on the horizontal axis. The bandwidth for both estimators was obtained using the plugin expression in Eq.~\eqref{eq:chen-plugin} which minimizes the MISE in Eq.~\eqref{eq:chen-lognormal-mise}.}
+\caption{\label{fig:improper-gamma}Density estimate of $n=300$ samples drawn from a log-normal distribution with logarithmic mean $\mu=1$ and logarithmic variance $\Sigma^{2}=1$ using an improper gamma estimator (solid black line) and a Gaussian approximation (dashed black line). The generating distribution is shown as a dotted black line and individual samples are shown as markers on the horizontal axis. The bandwidth for both estimators was obtained using the plugin expression in Eq.~\eqref{eq:chen-plugin} which minimises the MISE in Eq.~\eqref{eq:chen-lognormal-mise}.}
 \end{figure}
 
 
