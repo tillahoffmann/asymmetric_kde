@@ -2,17 +2,26 @@
 \lyxformat 474
 \begin_document
 \begin_header
-\textclass imsart
+\textclass article
 \begin_preamble
-\usepackage{imsart, hyperref}
+\title[Asymptotics of asymmetric KDEs]{Unified treatment of the asymptotics of asymmetric kernel density estimators}
+\author[Hoffmann {\it et al.}]{Till Hoffmann}
+\email{t.hoffmann13@imperial.ac.uk}
+\address{Imperial College London,
+London SW7 2AZ,
+United Kingdom.}
+
+\author{Nick Jones}
+\address{Imperial College London,
+London SW7 2AZ,
+United Kingdom.}
 \end_preamble
-\options aos,preprint
 \use_default_options false
 \begin_modules
-theorems-ams-bytype
+theorems-std
 \end_modules
 \maintain_unincluded_children false
-\language american
+\language english
 \language_package none
 \inputencoding auto
 \fontencoding default
@@ -129,112 +138,6 @@ theorems-ams-bytype
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-title{Unified treatment of the asymptotics of asymmetric kernel density
- estimators}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-runtitle{Asymptotics of asymmetric KDEs}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-author{Till Hoffmann
-\backslash
-corref{}
-\backslash
-ead[label=e1]{t.hoffmann13@imperial.ac.uk}}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-and
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-author{Nick Jones
-\backslash
-ead[label=e2]{nick.jones@imperial.ac.uk}}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-runauthor{T.
- Hoffmann and N.
- Jones}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-affiliation{Imperial College London}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-address{Department of Mathematics
-\backslash
-
-\backslash
-Imperial College London
-\backslash
-
-\backslash
-London, SW7 2AZ
-\backslash
-
-\backslash
-United Kingdom
-\backslash
-
-\backslash
-
-\backslash
-printead{e1}
-\backslash
-
-\backslash
- 
-\backslash
-phantom{E-mail:
-\backslash
- }
-\backslash
-printead*{e2}}
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Abstract
 We extend balloon and sample-smoothing estimators, two types of variable-bandwid
 th kernel density estimators, by a shift parameter and derive their asymptotic
@@ -251,53 +154,6 @@ s.
  easy exploratory data analysis.
  We compare the plugin expressions with cross-validation using simulated
  data (all source code is publicly available).
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{keyword}[class=MSC] 
-\backslash
-kwd{62G07}
-\backslash
-end{keyword}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{keyword} 
-\backslash
-kwd{kernel density estimation}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-kwd{asymmetric kernel} 
-\backslash
-kwd{asymptotics} 
-\backslash
-end{keyword}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-maketitle
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Section
@@ -1867,6 +1723,21 @@ sideways true
 status open
 
 \begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textwidth=2.7
+\backslash
+textheight
+\end_layout
+
+\end_inset
+
+
 \begin_inset Tabular
 <lyxtabular version="3" rows="6" columns="6">
 <features rotate="0" tabularvalignment="middle" tabularwidth="90theight%">
@@ -2351,6 +2222,19 @@ List of probability distributions with their mean and variance.
  sample.
  The effective bandwidth is shown in the last column.
  
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finishcaption
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2359,10 +2243,6 @@ List of probability distributions with their mean and variance.
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset VSpace 2em
-\end_inset
-
-
 \begin_inset Tabular
 <lyxtabular version="3" rows="7" columns="6">
 <features rotate="0" tabularvalignment="middle" tabularwidth="90theight%">
@@ -2896,6 +2776,19 @@ List of kernels with their asymptotic variance.
 
  are shown separately for proper and improper estimators.
  
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finishcaption
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3956,7 +3849,7 @@ reference "eq:jeon-kim-estimator"
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "paper"
-options "imsart-number"
+options "rss"
 
 \end_inset
 

@@ -1,37 +1,3 @@
-%% LyX 2.1.4 created this file.  For more info, see http://www.lyx.org/.
-%% Do not edit unless you really know what you are doing.
-\documentclass[twoside,aos,preprint]{imsart}
-\usepackage[latin9]{inputenc}
-\usepackage{rotfloat}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{amssymb}
-\usepackage{graphicx}
-
-\makeatletter
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
-%% Because html converters don't know tabularnewline
-\providecommand{\tabularnewline}{\\}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
-  \theoremstyle{definition}
-  \newtheorem{defn}{\protect\definitionname}
-\theoremstyle{plain}
-\newtheorem{thm}{\protect\theoremname}
-  \theoremstyle{plain}
-  \newtheorem{lem}{\protect\lemmaname}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
-\usepackage{imsart, hyperref}
-
-\makeatother
-
-  \providecommand{\definitionname}{Definition}
-  \providecommand{\lemmaname}{Lemma}
-\providecommand{\theoremname}{Theorem}
-
-\begin{document}
 \global\long\def\bias{\mathrm{bias}}
 \global\long\def\var{\mathrm{var}}
 \global\long\def\mse{\mathrm{MSE}}
@@ -43,24 +9,9 @@
 \global\long\def\rigkernel{\mathrm{RIG}}
 \global\long\def\euler{\mathrm{e}}
 
-
-\title{Unified treatment of the asymptotics of asymmetric kernel density estimators}
-\runtitle{Asymptotics of asymmetric KDEs}
-\author{Till Hoffmann\corref{}\ead[label=e1]{t.hoffmann13@imperial.ac.uk}}
-\and
-\author{Nick Jones\ead[label=e2]{nick.jones@imperial.ac.uk}}
-\runauthor{T. Hoffmann and N. Jones}
-\affiliation{Imperial College London}
-\address{Department of Mathematics\\Imperial College London\\London, SW7 2AZ\\United Kingdom\\\printead{e1}\\ \phantom{E-mail:\ }\printead*{e2}}
-
 \begin{abstract}
 We extend balloon and sample-smoothing estimators, two types of variable-bandwidth kernel density estimators, by a shift parameter and derive their asymptotic properties. Our approach facilitates the unified study of a wide range of density estimators which are subsumed under these two general classes of kernel density estimators. We demonstrate our method by deriving the asymptotic bias, variance, and mean (integrated) squared error of density estimators with gamma, log-normal, Birnbaum-Saunders, inverse Gaussian and reciprocal inverse Gaussian kernels. We propose two new density estimators for positive random variables that yield properly-normalised density estimates. Plugin expressions for bandwidth estimation are provided to facilitate easy exploratory data analysis. We compare the plugin expressions with cross-validation using simulated data (all source code is publicly available).
 \end{abstract}
-\begin{keyword}[class=MSC] \kwd{62G07}\end{keyword}
-\begin{keyword} \kwd{kernel density estimation}
-\kwd{asymmetric kernel} \kwd{asymptotics} \end{keyword}
-\maketitle
-
 
 \section{Introduction}
 
@@ -326,6 +277,7 @@ As discussed in Appendix~\ref{app:cross-validation}, cross-validation is straigh
 \subsection{Application to estimators with other kernels\label{subsec:other-kernels}}
 
 \begin{sidewaystable}
+\textwidth=2.7\textheight%
 \begin{tabular*}{0.9\textheight}{@{\extracolsep{\fill}}llllll}
 Distribution & $\left\langle t\right\rangle $ & Variance & Parametrisation & $h^{2}\left(x\right)\delta\left(x\right)$ & $h\left(x\right)$\tabularnewline
 \hline 
@@ -337,10 +289,9 @@ $\rigkernel\left(t;\mu,\lambda\right)=\sqrt{\frac{\lambda}{2\pi t}}\exp\left(-\f
 \end{tabular*}
 
 \vspace{2em}
-\caption{\label{tbl:kernels}List of probability distributions with their mean and variance. The fourth column shows the parametrisation used for improper weight functions, where $x$ is the evaluation point and $y$ is the associated sample. The parametrisation for proper weight functions can be obtained by swapping $x$ and $y$. The fifth column lists the shift between the mean of the kernel and the sample. The effective bandwidth is shown in the last column. }
+\caption{\label{tbl:kernels}List of probability distributions with their mean and variance. The fourth column shows the parametrisation used for improper weight functions, where $x$ is the evaluation point and $y$ is the associated sample. The parametrisation for proper weight functions can be obtained by swapping $x$ and $y$. The fifth column lists the shift between the mean of the kernel and the sample. The effective bandwidth is shown in the last column. \finishcaption}
 
 
-\vspace{2em}
 \begin{tabular*}{0.9\textheight}{@{\extracolsep{\fill}}llllll}
  &  & \multicolumn{2}{l}{Improper weight function} & \multicolumn{2}{l}{Proper weight function}\tabularnewline
 Kernel with ref. & $n\times\var_{\sigma}$  & $\bias_{\sigma}$  & $n^{1/5}\times\sigma*$ & $\bias_{\sigma}$  & $n^{1/5}\times\sigma*$\tabularnewline
@@ -353,7 +304,7 @@ RIG \cite{Scaillet2004} & $\frac{f(x)}{2\sigma\sqrt{\pi x}}$  & $\frac{\sigma^{2
 \end{tabular*}
 
 \vspace{2em}
-\caption{\label{tbl:asymptotic-properties}List of kernels with their asymptotic variance. The bias and optimal plugin bandwidth $\sigma^{*}$ are shown separately for proper and improper estimators. }
+\caption{\label{tbl:asymptotic-properties}List of kernels with their asymptotic variance. The bias and optimal plugin bandwidth $\sigma^{*}$ are shown separately for proper and improper estimators. \finishcaption}
 \end{sidewaystable}
 We use the methods developed above to derive the asymptotic properties of estimators with proper and improper weight functions. The gamma, log-normal (LN), Birnbaum-Saunders (BS), inverse Gaussian (IG) and reciprocal inverse Gaussian (RIG) distributions are listed in Table~\ref{tbl:kernels}. To serve as a kernel, we parametrise the distributions in terms of the evaluation point $x$, associated sample $y$, and bandwidth parameter $\sigma$. In the limit $\sigma\rightarrow0$, all kernels converge to a normal distribution \cite{Johnson1994} with mean $x+h^{2}\left(x\right)\delta\left(x\right)$ and variance $h^{2}\left(x\right)$ such that our method is applicable. The parametrisation for proper estimators can be obtained by exchanging the role of the evaluation point and the associated sample.
 
@@ -527,7 +478,6 @@ is an unbiased estimator of the MISE of the density estimator $\hat{f}\left(x\ri
 \end{align*}
 
 
-\bibliographystyle{imsart-number}
+\bibliographystyle{rss}
 \bibliography{paper}
 
-\end{document}
