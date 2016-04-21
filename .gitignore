@@ -77,3 +77,7 @@ target/
 
 # PyCharm
 .idea
+
+# Latex stuff
+*.synctex*
+statsoc-comments.pdf

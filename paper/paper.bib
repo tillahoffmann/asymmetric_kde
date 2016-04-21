@@ -1,20 +1,66 @@
 %% This BibTeX bibliography file was created using BibDesk.
 %% http://bibdesk.sourceforge.net/
 
-%% Created for Till Hoffmann at 2016-01-14 10:40:44 +0000 
+%% Created for Till Hoffmann at 2016-03-04 22:08:40 +0000 
 
 
 %% Saved with string encoding Unicode (UTF-8) 
 
 
 
+@article{Marchant2013,
+	Abstract = {The kernel method is a nonparametric procedure used to estimate densities with support in R . When nonnegative data are modeled, the classical kernel density estimator presents a bias problem in the neighborhood of zero. Several methods have been developed to reduce this bias, which include the boundary kernel, data transformation and reflection methods. An alternative proposal is to use kernel estimators based on distributions with nonnegative support, as is the case of the Birnbaum--Saunders (BS), gamma, inverse Gaussian and lognormal models. Generalized \{BS\} (GBS) distributions have received considerable attention, due to their properties and their flexibility in modeling different types of data. In this paper, we propose, characterize and implement the kernel method based on \{GBS\} distributions to estimate densities with nonnegative support. In addition, we provide a simple method to choose the corresponding bandwidth. In order to evaluate the performance of these new estimators, we conduct a Monte Carlo simulation study. The obtained results are illustrated by analyzing financial real data. },
+	Author = {Carolina Marchant and Karine Bertin and V{\'\i}ctor Leiva and Helton Saulo},
+	Date-Added = {2016-03-04 22:08:16 +0000},
+	Date-Modified = {2016-03-04 22:08:40 +0000},
+	Doi = {10.1016/j.csda.2013.01.013},
+	Journal = {Computational Statistics \& Data Analysis},
+	Pages = {1--15},
+	Title = {Generalized {Birnbaum--Saunders} kernel density estimators and an analysis of financial data},
+	Volume = {63},
+	Year = {2013},
+	Bdsk-Url-1 = {http://www.sciencedirect.com/science/article/pii/S0167947313000285},
+	Bdsk-Url-2 = {http://dx.doi.org/10.1016/j.csda.2013.01.013}}
+
+@article{Malec2014,
+	Abstract = {Abstract Standard fixed symmetric kernel-type density estimators are known to encounter problems for positive random variables with a large probability mass close to zero. It is shown that, in such settings, alternatives of asymmetric gamma kernel estimators are superior, but also differ in asymptotic and finite sample performance conditionally on the shape of the density near zero and the exact form of the chosen kernel. Therefore, a refined version of the gamma kernel with an additional tuning parameter adjusted according to the shape of the density close to the boundary is suggested. A data-driven method for the appropriate choice of the modified gamma kernel estimator is also provided. An extensive simulation study compares the performance of this refined estimator to those of standard gamma kernel estimates and standard boundary corrected and adjusted fixed kernels. It is found that the finite sample performance of the proposed new estimator is superior in all settings. Two empirical applications based on high-frequency stock trading volumes and realized volatility forecasts demonstrate the usefulness of the proposed methodology in practice. },
+	Author = {Peter Malec and Melanie Schienle},
+	Date-Added = {2016-03-04 21:57:14 +0000},
+	Date-Modified = {2016-03-04 21:57:30 +0000},
+	Doi = {10.1016/j.csda.2013.10.023},
+	Journal = {Computational Statistics \& Data Analysis},
+	Pages = {57--76},
+	Title = {Nonparametric kernel density estimation near the boundary},
+	Volume = {72},
+	Year = {2014},
+	Bdsk-Url-1 = {http://www.sciencedirect.com/science/article/pii/S0167947313003770},
+	Bdsk-Url-2 = {http://dx.doi.org/10.1016/j.csda.2013.10.023}}
+
+@article{Kuruwita2010,
+	Abstract = {We propose a modification to the regular kernel density estimation method that use asymmetric kernels to circumvent the spill over problem for densities with positive support. First a pivoting method is introduced for placement of the data relative to the kernel function. This yields a strongly consistent density estimator that integrates to one for each fixed bandwidth in contrast to most density estimators based on asymmetric kernels proposed in the literature. Then a data-driven Bayesian local bandwidth selection method is presented and lognormal, gamma, Weibull and inverse Gaussian kernels are discussed as useful special cases. Simulation results and a real-data example illustrate the advantages of the new methodology. },
+	Author = {C.N. Kuruwita and K.B. Kulasekera and W.J. Padgett},
+	Date-Added = {2016-03-04 14:29:17 +0000},
+	Date-Modified = {2016-03-04 14:29:53 +0000},
+	Doi = {10.1016/j.jspi.2010.01.001},
+	Journal = {Journal of Statistical Planning and Inference},
+	Keywords = {asymmetric kernel},
+	Number = {7},
+	Pages = {1765--1774},
+	Title = {Density estimation using asymmetric kernels and {Bayes} bandwidths with censored data},
+	Volume = {140},
+	Year = {2010},
+	Bdsk-Url-1 = {http://www.sciencedirect.com/science/article/pii/S0378375810000030},
+	Bdsk-Url-2 = {http://dx.doi.org/10.1016/j.jspi.2010.01.001},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAFgAdccmVsYXRpdmVQYXRoWWFsaWFzRGF0YV8QZkt1cnV3aXRhMjAxMCAtIERlbnNpdHkgZXN0aW1hdGlvbiB1c2luZyBhc3ltbWV0cmljIGtlcm5lbHMgYW5kIEJheWVzIGJhbmR3aWR0aHMgd2l0aCBjZW5zb3JlZCBkYXRhLnBkZtIXCxgZV05TLmRhdGFPEQLIAAAAAALIAAIAAAxNYWNpbnRvc2ggSEQAAAAAAAAAAAAAAAAAAADQiZxKSCsAAAB26gQfS3VydXdpdGEyMDEwIC0gRGVucyMxQ0M2QjMzLnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcxrM9L/TG4AAAAAAAAAAAABAAIAAAkgAAAAAAAAAAAAAAAAAAAABXBhcGVyAAAQAAgAANCJnEoAAAARAAgAANL/TG4AAAABABQAduoEAHbprQAQ2DIACTsdAAKT0wACAF1NYWNpbnRvc2ggSEQ6VXNlcnM6AHRpbGxob2ZmbWFubjoAZ2l0OgBhc3ltbWV0cmljX2tkZToAcGFwZXI6AEt1cnV3aXRhMjAxMCAtIERlbnMjMUNDNkIzMy5wZGYAAA4AzgBmAEsAdQByAHUAdwBpAHQAYQAyADAAMQAwACAALQAgAEQAZQBuAHMAaQB0AHkAIABlAHMAdABpAG0AYQB0AGkAbwBuACAAdQBzAGkAbgBnACAAYQBzAHkAbQBtAGUAdAByAGkAYwAgAGsAZQByAG4AZQBsAHMAIABhAG4AZAAgAEIAYQB5AGUAcwAgAGIAYQBuAGQAdwBpAGQAdABoAHMAIAB3AGkAdABoACAAYwBlAG4AcwBvAHIAZQBkACAAZABhAHQAYQAuAHAAZABmAA8AGgAMAE0AYQBjAGkAbgB0AG8AcwBoACAASABEABIAklVzZXJzL3RpbGxob2ZmbWFubi9naXQvYXN5bW1ldHJpY19rZGUvcGFwZXIvS3VydXdpdGEyMDEwIC0gRGVuc2l0eSBlc3RpbWF0aW9uIHVzaW5nIGFzeW1tZXRyaWMga2VybmVscyBhbmQgQmF5ZXMgYmFuZHdpZHRocyB3aXRoIGNlbnNvcmVkIGRhdGEucGRmABMAAS8AABUAAgAT//8AAIAG0hscHR5aJGNsYXNzbmFtZVgkY2xhc3Nlc11OU011dGFibGVEYXRhox0fIFZOU0RhdGFYTlNPYmplY3TSGxwiI1xOU0RpY3Rpb25hcnmiIiBfEA9OU0tleWVkQXJjaGl2ZXLRJidUcm9vdIABAAgAEQAaACMALQAyADcAQABGAE0AVQBgAGcAagBsAG4AcQBzAHUAdwCEAI4A9wD8AQQD0APSA9cD4gPrA/kD/QQEBA0EEgQfBCIENAQ3BDwAAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAAEPg==}}
+
 @misc{SourceCode,
-	Author = {Till Hoffmann},
+	Author = {Till Hoffmann and Jones, Nick S.},
 	Date-Added = {2016-01-05 14:08:39 +0000},
-	Date-Modified = {2016-01-14 10:40:44 +0000},
+	Date-Modified = {2016-03-04 21:08:04 +0000},
 	Title = {GitHub repository ``asymmetric\_kde''},
 	Url = {http://bit.ly/1ZwNoli},
-	Year = {2016}}
+	Year = {2016},
+	Bdsk-Url-1 = {http://bit.ly/1ZwNoli}}
 
 @book{Howie2008,
 	Annote = {Residue for ratio of holomorphic functions (Theorem 8.15 on page 148).
@@ -22,7 +68,8 @@
 Residue for non-simple poles (Theorem 8.17 on page 150).},
 	Author = {John M. Howie},
 	Date-Added = {2015-12-16 18:49:14 +0000},
-	Date-Modified = {2015-12-16 18:49:14 +0000},
+	Date-Modified = {2016-03-04 14:28:10 +0000},
+	Keywords = {complex analysis},
 	Publisher = {Springer},
 	Title = {Complex Analysis},
 	Year = {2008},
@@ -60,13 +107,13 @@ Residue for non-simple poles (Theorem 8.17 on page 150).},
 	Abstract = {The problem of boundary bias is associated with kernel estimation for regression curves with compact support. This paper proposes a simple and unified approach for remedying boundary bias in non-parametric regression, without dividing the compact support into interior and boundary areas and without applying explicitly different smoothing treatments separately. The approach uses the beta family of density functions as kernels. The shapes of the kernels vary according to the position where the curve estimate is made. They are symmetric at the middle of the support interval, and become more and more asymmetric nearer the boundary points. The kernels never put any weight outside the data support interval, and thus avoid boundary bias. The method is a generalization of classical Bernstein polynomials, one of the earliest methods of statistical smoothing. The proposed estimator has optimal mean integrated squared error at an order of magnitude $n^{-4/5}$ , equivalent to that of standard kernel estimators when the curve has an unbounded support.},
 	Author = {Brown, Bruce M. and Chen, Song Xi},
 	Date-Added = {2015-12-16 18:48:41 +0000},
-	Date-Modified = {2016-01-05 14:47:03 +0000},
+	Date-Modified = {2016-03-04 16:39:17 +0000},
 	Doi = {10.1111/1467-9469.00136},
 	Journal = {Scand. J. Stat.},
 	Keywords = {Density estimation},
 	Number = {1},
 	Pages = {47--59},
-	Title = {Beta-Bernstein Smoothing for Regression Curves with Compact Support},
+	Title = {{Beta-Bernstein} Smoothing for Regression Curves with Compact Support},
 	Volume = {26},
 	Year = {1999},
 	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAFgAdccmVsYXRpdmVQYXRoWWFsaWFzRGF0YV8QcC4uLy4uLy4uL2dvb2dsZV9kcml2ZS9wYXBlcnMvQnJvd24xOTk5IC0gQmV0YS1CZXJuc3RlaW4gU21vb3RoaW5nIGZvciBSZWdyZXNzaW9uIEN1cnZlcyB3aXRoIENvbXBhY3QgU3VwcG9ydC5wZGbSFwsYGVdOUy5kYXRhTxECgAAAAAACgAACAAAMTWFjaW50b3NoIEhEAAAAAAAAAAAAAAAAAAAA0ImcSkgrAAAAESWWH0Jyb3duMTk5OSAtIEJldGEtQmVyI0U5MzY1OC5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADpNljSKwPsAAAAAAAAAAAAAwADAAAJIAAAAAAAAAAAAAAAAAAAAAZwYXBlcnMAEAAIAADQiZxKAAAAEQAIAADSKvXcAAAAAQAQABEllgAJYWMACTsdAAKT0wACAFdNYWNpbnRvc2ggSEQ6VXNlcnM6AHRpbGxob2ZmbWFubjoAZ29vZ2xlX2RyaXZlOgBwYXBlcnM6AEJyb3duMTk5OSAtIEJldGEtQmVyI0U5MzY1OC5wZGYAAA4AqABTAEIAcgBvAHcAbgAxADkAOQA5ACAALQAgAEIAZQB0AGEALQBCAGUAcgBuAHMAdABlAGkAbgAgAFMAbQBvAG8AdABoAGkAbgBnACAAZgBvAHIAIABSAGUAZwByAGUAcwBzAGkAbwBuACAAQwB1AHIAdgBlAHMAIAB3AGkAdABoACAAQwBvAG0AcABhAGMAdAAgAFMAdQBwAHAAbwByAHQALgBwAGQAZgAPABoADABNAGEAYwBpAG4AdABvAHMAaAAgAEgARAASAHpVc2Vycy90aWxsaG9mZm1hbm4vZ29vZ2xlX2RyaXZlL3BhcGVycy9Ccm93bjE5OTkgLSBCZXRhLUJlcm5zdGVpbiBTbW9vdGhpbmcgZm9yIFJlZ3Jlc3Npb24gQ3VydmVzIHdpdGggQ29tcGFjdCBTdXBwb3J0LnBkZgATAAEvAAAVAAIAE///AACABtIbHB0eWiRjbGFzc25hbWVYJGNsYXNzZXNdTlNNdXRhYmxlRGF0YaMdHyBWTlNEYXRhWE5TT2JqZWN00hscIiNcTlNEaWN0aW9uYXJ5oiIgXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0AMgA3AEAARgBNAFUAYABnAGoAbABuAHEAcwB1AHcAhACOAQEBBgEOA5IDlAOZA6QDrQO7A78DxgPPA9QD4QPkA/YD+QP+AAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAABAA=},
@@ -113,12 +160,12 @@ They almost provide plugin estimators but do not follow through by using a refer
 	Author = {Jin, Xiaodong and Kawczak, Janusz},
 	Cites = {Chen2000, Scaillet2004 different version from 2001},
 	Date-Added = {2015-12-16 18:48:05 +0000},
-	Date-Modified = {2016-01-05 14:53:19 +0000},
+	Date-Modified = {2016-03-04 16:39:11 +0000},
 	Journal = {Annals of Economics and Finance},
 	Keywords = {Density estimation; birnbaum-saunders; lognormal},
 	Number = {1},
 	Pages = {103--124},
-	Title = {Birnbaum-Saunders and Lognormal Kernel Estimators for Modelling Durations in High Frequency Financial Data},
+	Title = {{Birnbaum-Saunders} and Lognormal Kernel Estimators for Modelling Durations in High Frequency Financial Data},
 	Volume = {4},
 	Year = {2003},
 	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAFgAdccmVsYXRpdmVQYXRoWWFsaWFzRGF0YV8QlS4uLy4uLy4uL2dvb2dsZV9kcml2ZS9wYXBlcnMvSmluMjAwMyAtIEJpcm5iYXVtLVNhdW5kZXJzIGFuZCBMb2dub3JtYWwgS2VybmVsIEVzdGltYXRvcnMgZm9yIE1vZGVsbGluZyBEdXJhdGlvbnMgaW4gSGlnaCBGcmVxdWVuY3kgRmluYW5jaWFsIERhdGEucGRm0hcLGBlXTlMuZGF0YU8RAvAAAAAAAvAAAgAADE1hY2ludG9zaCBIRAAAAAAAAAAAAAAAAAAAANCJnEpIKwAAABEllh9KaW4yMDAzIC0gQmlybmJhdW0tUyMyQzRCMjIucGRmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALEsi0QzZ7AAAAAAAAAAAAAMAAwAACSAAAAAAAAAAAAAAAAAAAAAGcGFwZXJzABAACAAA0ImcSgAAABEACAAA0QzZ7AAAAAEAEAARJZYACWFjAAk7HQACk9MAAgBXTWFjaW50b3NoIEhEOlVzZXJzOgB0aWxsaG9mZm1hbm46AGdvb2dsZV9kcml2ZToAcGFwZXJzOgBKaW4yMDAzIC0gQmlybmJhdW0tUyMyQzRCMjIucGRmAAAOAPIAeABKAGkAbgAyADAAMAAzACAALQAgAEIAaQByAG4AYgBhAHUAbQAtAFMAYQB1AG4AZABlAHIAcwAgAGEAbgBkACAATABvAGcAbgBvAHIAbQBhAGwAIABLAGUAcgBuAGUAbAAgAEUAcwB0AGkAbQBhAHQAbwByAHMAIABmAG8AcgAgAE0AbwBkAGUAbABsAGkAbgBnACAARAB1AHIAYQB0AGkAbwBuAHMAIABpAG4AIABIAGkAZwBoACAARgByAGUAcQB1AGUAbgBjAHkAIABGAGkAbgBhAG4AYwBpAGEAbAAgAEQAYQB0AGEALgBwAGQAZgAPABoADABNAGEAYwBpAG4AdABvAHMAaAAgAEgARAASAJ9Vc2Vycy90aWxsaG9mZm1hbm4vZ29vZ2xlX2RyaXZlL3BhcGVycy9KaW4yMDAzIC0gQmlybmJhdW0tU2F1bmRlcnMgYW5kIExvZ25vcm1hbCBLZXJuZWwgRXN0aW1hdG9ycyBmb3IgTW9kZWxsaW5nIER1cmF0aW9ucyBpbiBIaWdoIEZyZXF1ZW5jeSBGaW5hbmNpYWwgRGF0YS5wZGYAABMAAS8AABUAAgAT//8AAIAG0hscHR5aJGNsYXNzbmFtZVgkY2xhc3Nlc11OU011dGFibGVEYXRhox0fIFZOU0RhdGFYTlNPYmplY3TSGxwiI1xOU0RpY3Rpb25hcnmiIiBfEA9OU0tleWVkQXJjaGl2ZXLRJidUcm9vdIABAAgAEQAaACMALQAyADcAQABGAE0AVQBgAGcAagBsAG4AcQBzAHUAdwCEAI4BJgErATMEJwQpBC4EOQRCBFAEVARbBGQEaQR2BHkEiwSOBJMAAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAAElQ==},

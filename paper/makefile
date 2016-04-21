@@ -9,17 +9,16 @@ clear :
 	rm -f paper.pdf
 	rm -f paper.run.xml
 
-statsoc : paper.tex master_statsoc.tex paper.bib improper-gamma.ps bandwidth-comparison.ps
-	latex master_statsoc
-	bibtex master_statsoc
-	latex master_statsoc
-	latex master_statsoc
-	dvipdf master_statsoc
-	open master_statsoc.pdf
+ejs : lyx body.tex abstract.tex ejs.tex paper.bib improper-gamma.pdf bandwidth-comparison.pdf
+	pdflatex ejs
+	bibtex ejs
+	pdflatex ejs
+	pdflatex ejs
+	open ejs.pdf
 
 
-lyx : paper.lyx
-	lyx --force-overwrite --export pdflatex master.lyx
-	rm master.tex
+lyx : wrapper.lyx body.lyx abstract.lyx
+	lyx --force-overwrite --export pdflatex wrapper.lyx
+	rm wrapper.tex
 
-all : clear lyx pdflatex
+all : clear lyx ejs
