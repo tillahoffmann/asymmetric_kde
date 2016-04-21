@@ -81,3 +81,6 @@ target/
 # Latex stuff
 *.synctex*
 statsoc-comments.pdf
+
+# Raw data
+data/
