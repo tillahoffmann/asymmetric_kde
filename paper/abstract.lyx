@@ -1,0 +1,111 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+% DON'T change margins - should be 1 inch all around.
+\usepackage[margin=1in]{geometry}
+\usepackage{har2nat}
+
+\def\spacingset#1{\renewcommand{\baselinestretch}%
+{#1}\small\normalsize} \spacingset{1}
+\spacingset{1.45} % DON'T change the spacing!
+
+\pdfminorversion=4
+\end_preamble
+\options 12pt
+\use_default_options false
+\begin_modules
+theorems-std
+\end_modules
+\maintain_unincluded_children false
+\language american
+\language_package none
+\inputencoding auto
+\fontencoding default
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command bibtex
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 0
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\branch unblind
+\selected 0
+\filename_suffix 0
+\color #faf0e6
+\end_branch
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Abstract
+We extend balloon and sample-smoothing estimators, two kernel density estimators
+ with variable bandwidth, by a shift parameter and derive their asymptotic
+ properties.
+ Our approach facilitates the unified study of a wide range of density estimator
+s which are subsumed under these two general classes of kernel density estimator
+s.
+ We demonstrate our method by deriving the asymptotic bias, variance, and
+ mean (integrated) squared error of density estimators with gamma, log-normal,
+ Birnbaum-Saunders, inverse Gaussian and reciprocal inverse Gaussian kernels.
+ We propose two new density estimators for positive random variables that
+ yield properly-normalised density estimates.
+ Plugin expressions for bandwidth estimation are provided to facilitate
+ easy exploratory data analysis.
+ We compare the plugin expressions with cross-validation using simulated
+ data (all source code is publicly available).
+\end_layout
+
+\end_body
+\end_document
