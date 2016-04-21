@@ -1,0 +1,95 @@
+% Template for the submittion to:
+%   Probability Surveys               [ps]
+%   Statistics Surveys                [ss] 
+%   Electronic Journal of Statistics  [ejs]
+%
+% Author: In this template, the places where you need to add information
+%         (or delete line) are indicated by {???}.  Mostly the information
+%         required is obvious, but some explanations are given in lines starting
+% Author:
+% All other lines should be ignored.  After editing, there should be
+% no instances of ??? after this line.
+
+% use option [preprint] to remove info line at bottom:
+% journal options: ps,ss,ejs
+\documentclass[ejs, preprint]{imsart}
+
+\usepackage{rotfloat}
+\RequirePackage[numbers]{natbib}
+\RequirePackage[colorlinks,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{amsthm,amsmath,graphicx}
+
+\makeatletter
+\renewcommand*{\eqref}[1]{%
+  \hyperref[{#1}]{\textup{\tagform@{\ref*{#1}}}}%
+}
+\makeatother
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{plain}
+\newtheorem{lem}[thm]{Lemma}
+
+% will be filled by editor:
+% \doi{10.1214/154957804100000000}
+% \pubyear{0000}
+% \volume{0}
+% \firstpage{0}
+% \lastpage{0}
+% \arxiv{}
+
+\begin{document}
+
+% \showthe\columnwidth
+
+\begin{frontmatter}
+
+% "Title of the Paper"
+\title{Unified Treatment of the Asymptotics of Asymmetric Kernel Density Estimators} %\thanksref{t1}}
+%\thankstext{t1}{This is an original survey paper}
+\runtitle{Asymptotics of Asymmetric KDEs}
+
+\begin{aug}
+\author{\fnms{Till} \snm{Hoffmann}\ead[label=e1]{t.hoffmann13@imperial.ac.uk}}
+\and
+\author{\fnms{Nick} \snm{Jones}\ead[label=e2]{nick.jones@imperial.ac.uk}}
+
+\address{
+Department of Mathematics\\
+Imperial College London\\
+South Kensington Campus\\
+London, SW7 2AZ\\
+United Kingdom\\
+\printead{e1,e2}}
+
+
+\runauthor{T. Hoffmann et al.}
+
+\affiliation{Imperial College London}
+
+\end{aug}
+
+\input{abstract}
+
+\begin{keyword}[class=MSC]
+\kwd{62G07}
+\end{keyword}
+
+\begin{keyword}
+\kwd{kernel density estimation}
+\kwd{asymmetric kernel}
+\kwd{asymptotics}
+\end{keyword}
+
+% history:
+% \received{\smonth{1} \syear{0000}}
+
+%\tableofcontents
+
+\end{frontmatter}
+
+\input{body}
+
+\end{document}
