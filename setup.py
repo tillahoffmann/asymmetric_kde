@@ -7,6 +7,9 @@ setup(
     author='Till Hoffmann',
     author_email='tah13@imperial.ac.uk',
     url='https://github.com/tillahoffmann/asymmetric_kde',
-    requires=['numpy', 'scipy'],
+    install_requires=[
+        'numpy',
+        'scipy',
+    ],
     packages=find_packages(),
 )
