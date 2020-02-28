@@ -1,1 +1,1 @@
-from asymmetric_kde import *
+from .asymmetric_kde import *
